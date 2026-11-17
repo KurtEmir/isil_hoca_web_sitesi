@@ -1,55 +1,63 @@
 :root {
-  /* ─── Brand Colors ───────────────────────────── */
-  --color-primary:          oklch(26% 0.14 285);
-  --color-primary-mid:      oklch(40% 0.18 285);
-  --color-primary-light:    oklch(58% 0.15 285);
-  --color-primary-muted:    oklch(74% 0.09 285);
-  --color-primary-ghost:    oklch(96% 0.016 285);
-  --color-primary-ghost2:   oklch(93% 0.022 285);
+  /* ─── TeacherX kırmızısı: sayfanın büyük alanları ─── */
+  --color-red:             oklch(52% 0.205 28);
+  --color-red-deep:        oklch(44% 0.18 27);
+  --color-red-light:       oklch(66.5% 0.19 29);
+  --color-on-red:          oklch(99% 0.004 30);
+  --color-on-red-muted:    oklch(91.5% 0.035 22);
+  --color-rule-on-red:     oklch(99% 0.004 30 / 0.38);
 
-  --color-accent:           oklch(68% 0.13 62);
-  --color-accent-light:     oklch(80% 0.09 62);
-  --color-accent-deep:      oklch(52% 0.12 62);
-  --color-accent-ghost:     oklch(95% 0.022 62);
+  /* ─── Mürekkep ve kâğıt ──────────────────────── */
+  --color-ink:             oklch(17% 0.012 28);
+  --color-ink-body:        oklch(29% 0.012 28);
+  --color-ink-muted:       oklch(46% 0.012 28);
+  --color-paper:           oklch(99.4% 0.002 30);
+  --color-rule:            oklch(86% 0.006 30);
 
-  /* ─── Surfaces ───────────────────────────────── */
-  --color-bg:               oklch(98% 0.008 95);
-  --color-bg-subtle:        oklch(96% 0.010 95);
-  --color-bg-raised:        oklch(100% 0 0);
-  --color-bg-section:       oklch(96% 0.016 285);
-  --color-bg-dark:          oklch(18% 0.060 285);
-  --color-bg-dark-raised:   oklch(22% 0.055 285);
+  /* ─── Siyah alan (medya) ─────────────────────── */
+  --color-black:           oklch(16.5% 0.012 28);
+  --color-on-black:        oklch(99.4% 0.002 30);
+  --color-on-black-muted:  oklch(79% 0.008 30);
+  --color-rule-on-black:   oklch(99.4% 0.002 30 / 0.16);
+  --color-black-raised:    oklch(21.5% 0.012 28);
 
-  /* ─── Text ───────────────────────────────────── */
-  --color-text-headline:    oklch(18% 0.022 285);
-  --color-text-body:        oklch(30% 0.016 285);
-  --color-text-muted:       oklch(50% 0.012 285);
-  --color-text-faint:       oklch(66% 0.007 285);
-  --color-text-on-dark:     oklch(94% 0.006 285);
-  --color-text-muted-dark:  oklch(70% 0.012 285);
+  /* ─── Typography (next/font sets --font-host on <html>) ── */
+  --font-sans: var(--font-host), 'Helvetica Neue', Arial, system-ui, sans-serif;
 
-  /* ─── Borders ────────────────────────────────── */
-  --color-border:           oklch(88% 0 0 / 0.65);
-  --color-border-muted:     oklch(92% 0 0 / 0.8);
-  --color-border-strong:    oklch(70% 0.06 285 / 0.20);
-  --color-border-dark:      oklch(36% 0.06 285 / 0.6);
-  --color-accent-rule:      oklch(68% 0.13 62 / 0.7);
+  --weight-light: 300;
+  --weight-book:  400;
+  --weight-mid:   500;
+  --weight-semi:  600;
+  --weight-bold:  700;
+  --weight-black: 800;
 
-  /* ─── Typography (next/font provides the actual font) ── */
-  --font-display: 'Playfair Display', 'Georgia', serif;
-  --font-body:    'Inter', 'Helvetica Neue', Arial, system-ui, sans-serif;
-
-  /* ─── Type Scale ─────────────────────────────── */
-  --text-xs:      0.72rem;
-  --text-sm:      0.85rem;
+  --text-sm:      0.9375rem;
   --text-base:    1rem;
-  --text-lg:      1.125rem;
-  --text-xl:      1.25rem;
-  --text-2xl:     1.5rem;
-  --text-3xl:     clamp(1.75rem, 2.4vw, 2.1rem);
-  --text-4xl:     clamp(2.1rem,  3.2vw, 2.8rem);
-  --text-5xl:     clamp(2.6rem,  4.5vw, 3.8rem);
-  --text-display: clamp(3.4rem,  6vw,   5.4rem);
+  --text-body:    1.0625rem;
+  --text-lead:    clamp(1.25rem,  1.05rem + 0.8vw,  1.75rem);
+  --text-h3:      clamp(1.375rem, 1.15rem + 0.9vw,  1.875rem);
+  --text-list:    clamp(1.75rem,  1.15rem + 2.6vw,  3.5rem);
+  --text-feature: clamp(1.75rem,  1.3rem + 1.7vw,   2.75rem);
+  --text-h2:      clamp(2.5rem,   1.4rem + 4.4vw,   5.25rem);
+  --text-closing: clamp(3.25rem,  1.2rem + 8.4vw,   8.75rem);
+  --text-stat:    clamp(1.75rem,  1.4rem + 1.4vw,   2.625rem);
+  --text-statement: clamp(2rem, 1.15rem + 3.6vw, 4.5rem);
+
+  --poster-size:        15.6cqi;
+  --poster-size-narrow: 21cqi;
+
+  --spotlight-word:     27.5cqi;
+
+  --leading-poster:  0.88;
+  --leading-display: 0.94;
+  --leading-heading: 1;
+  --leading-snug:    1.22;
+  --leading-quote:   1.36;
+  --leading-body:    1.62;
+
+  --tracking-poster:  -0.04em;
+  --tracking-heading: -0.035em;
+  --tracking-snug:    -0.018em;
 
   /* ─── Spacing ────────────────────────────────── */
   --sp-1:   4px;
@@ -64,40 +72,35 @@
   --sp-16:  64px;
   --sp-20:  80px;
   --sp-24:  96px;
-  --sp-32:  128px;
 
-  /* ─── Border Radius ──────────────────────────── */
-  --radius-xs:   2px;
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   16px;
-  --radius-xl:   24px;
-  --radius-2xl:  40px;
-  --radius-pill: 999px;
+  --gap-grid:    clamp(16px, 2vw, 32px);
+  --gap-heading: clamp(40px, 5vw, 80px);
+  --gap-block:   clamp(32px, 4vw, 56px);
 
-  /* ─── Shadows ────────────────────────────────── */
-  --shadow-xs:  0 1px 2px  oklch(10% 0.02 285 / 0.06);
-  --shadow-sm:  0 1px 4px  oklch(10% 0.02 285 / 0.08), 0 2px 8px oklch(10% 0.02 285 / 0.04);
-  --shadow-md:  0 4px 16px oklch(10% 0.02 285 / 0.10), 0 2px 6px oklch(10% 0.02 285 / 0.06);
-  --shadow-lg:  0 12px 40px oklch(10% 0.02 285 / 0.12);
-  --shadow-xl:  0 24px 64px oklch(10% 0.02 285 / 0.14);
+  /* ─── Rules ──────────────────────────────────── */
+  --rule-thin:  1px;
+  --rule-bold:  3px;
 
   /* ─── Animation ──────────────────────────────── */
-  --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-enter:      cubic-bezier(0, 0, 0.2, 1);
-  --ease-exit:       cubic-bezier(0.4, 0, 1, 1);
-  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --dur-fast:    120ms;
   --dur-default: 220ms;
   --dur-slow:    380ms;
-  --dur-slower:  500ms;
+  --dur-grow:    900ms;
+  --dur-zoom:    700ms;
+
+  --delay-grow:  250ms;
+  --step-grow:   75ms;
 
   /* ─── Layout ─────────────────────────────────── */
-  --max-width:       1280px;
-  --nav-height:      72px;
-  --section-pad-v:   clamp(64px, 8vw, 96px);
-  --content-pad-h:   clamp(24px, 5vw, 48px);
+  --max-width:     1280px;
+  --nav-height:    72px;
+  --section-pad-v: clamp(80px, 9vw, 136px);
+  --content-pad-h: clamp(20px, 5vw, 64px);
+  --hero-stage-h:  calc(min(100svh, 980px) - var(--nav-height) - 128px);
+  --hero-figure-min: 520px;
 }
 
 @media (prefers-reduced-motion: reduce) {

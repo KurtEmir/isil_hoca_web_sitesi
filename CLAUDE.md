@@ -1,33 +1,36 @@
-# CLAUDE.md — Işıl Hoca Kişisel Web Sitesi
+# CLAUDE.md — Dr. Işıl Boy Ergül Kişisel Web Sitesi
 
 ## Proje Hakkında
 
-Öğretmen Işıl için profesyonel bir kişisel web sitesi. Ziyaretçilere Işıl Hoca'yı tanıtır, verdiği hizmetleri ve dersleri gösterir. Site içerikleri sonradan entegre edilecek bir CMS üzerinden yönetilebilir olacak.
+Dr. Işıl Boy Ergül (eğitim teknolojileri uzmanı, TeacherX kurucusu) için tek sayfalık profesyonel tanıtım sitesi ve içeriklerini yönetmek için küçük bir admin paneli. İçerik Supabase'de tutulur, admin panelinden düzenlenir.
 
-**Alan adı:** teacherx.online  
-**Dil:** Türkçe (birincil), İngilizce (ikincil — opsiyonel)
+**Alan adı:** teacherx.online
+**Dil:** Türkçe
+**Deploy:** Vercel (`.vercel/project.json`)
 
 ---
 
 ## Tasarım Sistemi
 
-Tasarım kararları için her zaman [AGENT.md](./AGENT.md) dosyasına başvur. AGENT.md'de tanımlı renk, tipografi, boşluk ve animasyon değerlerini kullan — dışarıdan değer türetme.
+Tasarım kararları için [AGENT.md](./AGENT.md). Token'ların tek doğruluk kaynağı `styles/tokens.css`'tir; AGENT.md bu dosyayı belgeler. Yeni bir renk, boşluk veya animasyon değeri gerekiyorsa önce `tokens.css`'e token ekle, sonra kullan. `main.css` içinde ham değer yazma. Font değişkeni `--font-host` `next/font` tarafından `html` üzerinde tanımlanır; `tokens.css` bunu `--font-sans` stack'ine bağlar. Sitede tek aile var (Host Grotesk); ikinci bir font eklemeden önce sor.
 
 ---
 
 ## Teknoloji Yığını
 
-### Şu An
-- Saf HTML, CSS, JavaScript (framework yok)
-- İçerik: `content/` klasöründe JSON dosyaları
-- Görseller: `public/images/` altında
+- **Next.js 15** (App Router), **React 19**, JavaScript (TypeScript yok)
+- **Supabase**: `content` tablosu (bölüm → JSONB), `messages` tablosu (iletişim formu), Supabase Auth (admin girişi), RLS ile yetki
+- **Saf CSS**: `styles/tokens.css` + `styles/main.css` (site), `styles/admin.css` (panel)
+- `next/font` (Host Grotesk — İstanbul'daki Element Type dökümhanesinin variable, uniwidth fontu), `next/image`
+- Node 20+ (`.nvmrc`), `@/` import alias (`jsconfig.json`)
 
-### CMS Entegrasyonu Sonrası (Planlanan)
-- Headless CMS (muhtemelen Sanity veya Strapi)
-- API'dan gelen JSON içerik aynı content şemasını takip edecek
+### Veri Akışı
 
-### Neden Bu Yığın
-CMS olmadan önce içeriği JSON'da saklamak, gelecekteki CMS geçişini sorunsuz yapar. HTML dosyaları içerik almak için bu JSON'ları okur — CMS geldiğinde sadece veri kaynağı değişir, şablon değil.
+1. `content/data.js` — statik varsayılan içerik; aynı zamanda Supabase seed kaynağı.
+2. `lib/content.js` → `getContent(section)` — Supabase'den okur; yoksa veya erişilemezse statik veriye düşer. DB satırı statik varsayılanlarla shallow-merge edilir, böylece yeni eklenen alanlar eski kayıtlarda da çalışır.
+3. Server component'lar `getContent` ile veri çeker. Ana sayfa statik üretilir (`revalidate = 3600`); admin kaydettiğinde `revalidatePath('/', 'layout')` ile anında yenilenir.
+4. Admin editörleri `lib/admin/useSectionContent.js` ile okur, `app/admin/actions.js` → `saveContent` ile yazar.
+5. İletişim formu `app/actions/contact.js` → `sendMessage` ile `messages` tablosuna yazar; admin `/admin/messages`'ta görür.
 
 ---
 
@@ -35,93 +38,105 @@ CMS olmadan önce içeriği JSON'da saklamak, gelecekteki CMS geçişini sorunsu
 
 ```
 isil_hoca_web_sitesi/
-├── index.html
-├── CLAUDE.md
-├── AGENT.md
-├── State.md
-├── content/                  # Tüm düzenlenebilir içerik burada
-│   ├── site.json             # Global site ayarları (başlık, meta, iletişim)
-│   ├── hero.json             # Ana sayfa hero bölümü
-│   ├── about.json            # Hakkımda bölümü
-│   ├── services.json         # Hizmetler / dersler listesi
-│   ├── testimonials.json     # Referanslar / yorumlar
-│   └── contact.json          # İletişim bilgileri
-├── public/
-│   └── images/               # Tüm görseller
-├── src/
-│   ├── css/
-│   │   ├── tokens.css        # Design token'lar (CSS custom properties)
-│   │   ├── base.css          # Reset, tipografi temeli
-│   │   ├── components.css    # Yeniden kullanılabilir bileşenler
-│   │   └── layout.css        # Sayfa düzeni
-│   └── js/
-│       ├── content.js        # JSON içeriği DOM'a bağlayan yükleyici
-│       └── animations.js     # Scroll ve interaction animasyonları
-└── components/               # Yeniden kullanılabilir HTML parçaları (opsiyonel)
+├── app/
+│   ├── layout.js               # Font (--font-host), generateMetadata
+│   ├── icon.svg                # Favicon
+│   ├── page.js                 # Ana sayfa (statik + ISR)
+│   ├── globals.css             # tokens.css + main.css import
+│   ├── actions/contact.js      # İletişim formu server action
+│   └── admin/
+│       ├── layout.jsx          # Sadece admin.css; sidebar yok
+│       ├── actions.js          # saveContent, seedContent, logout
+│       ├── login/page.jsx      # Giriş (sidebar'sız)
+│       └── (panel)/            # Route group: sidebar'lı panel
+│           ├── layout.jsx
+│           ├── page.jsx        # Dashboard + seed banner
+│           ├── site/ hero/ about/ journey/ spotlight/ expertise/ platforms/ offers/ media/ manifesto/ insights/ contact/
+│           └── messages/       # Gelen mesajlar (salt okunur)
+├── components/                 # Site bölümleri (server) + Nav/Contact (client)
+│   ├── Hero.jsx                # Kırmızı afiş: büyüyen slogan, duotone fotoğraf filtresi, rakamlar
+│   ├── Journey.jsx             # Yolculuk: metro hattı zaman çizelgesi
+│   ├── Spotlight.jsx           # Human+ bandı: duotone portre + denklem şeması
+│   ├── Platforms.jsx           # Ekosistem şeması + platform kartları
+│   ├── EcosystemDiagram.jsx    # Veriden çizilen SVG döngü şeması
+│   ├── DuotoneFilter.jsx       # Kırmızı-siyah duotone SVG filtresi
+│   ├── Offers.jsx Manifesto.jsx  # Davet seçenekleri, ilkeler
+│   ├── Affiliations.jsx        # Kurum/yayın listesi (about.affiliations'tan okur)
+│   ├── ArrowIcon.jsx           # Buton ve linklerdeki ok ikonu
+│   └── admin/                  # AdminSidebar, EditorShell, SeedBanner
+├── content/
+│   ├── data.js                 # Tüm statik içerik (bölüm başına export)
+│   └── navigation.js           # Menü maddeleri (Nav + Footer paylaşır)
+├── lib/
+│   ├── content.js              # getContent, CONTENT_SECTIONS
+│   ├── images.js               # resolveImage: /images yolu ya da https linki
+│   ├── admin/                  # useSectionContent, arrays, youtube
+│   └── supabase/               # config, public (cookie'siz), server, client
+├── middleware.js               # /admin koruması
+├── styles/                     # tokens.css, main.css, admin.css
+├── supabase/schema.sql         # Tablolar, RLS, admins listesi (idempotent)
+└── public/images/             # portre dekupesi + platforms/ (TeacherX, CertifiX, ETZ görselleri)
 ```
 
 ---
 
-## İçerik Şeması Kuralı
+## İçerik Kuralları
 
-Her JSON dosyasında `_meta` alanı olmalı:
-```json
-{
-  "_meta": {
-    "section": "hero",
-    "lastUpdated": "2026-06-18",
-    "cmsReady": true
-  }
-}
-```
-
-Bu alan CMS entegrasyonunda hangi içeriğin hangi bölüme ait olduğunu izlemek için kullanılır.
+- JSX içine sabit metin yazma. Etiket gibi küçük metinler bile (`readMoreLabel`, `socialLabel`, form placeholder'ları) `content/data.js`'den gelir. İstisna: admin paneli arayüz metinleri.
+- Yeni bir **alan** eklerken üçünü birlikte yap: `content/data.js` → ilgili component → ilgili admin editörü.
+- Yeni bir **bölüm** eklerken: `CONTENT_SECTIONS` (`lib/content.js`), `data.js`, component, editör sayfası, sidebar + dashboard kartı.
+- Liste elemanlarında `key` olarak index kullan; admin boş veya aynı başlıklı eleman ekleyebilir.
+- Boş bırakılan opsiyonel alanlar (link, sosyal medya URL'si, CTA) arayüzde gizlenir; `#` gibi sahte linkler kullanma.
+- Görseller `public/images/` altında; hero ve Human+ bandı fotoğrafı `/images/...` yolu ya da doğrudan https görsel linki (`lib/images.js` → `resolveImage`).
+- Hero'daki rakamlar `hero.stats`'tan, kurum listesi `about.affiliations`'tan, menü butonu `site.navCta`'dan okunur. Kurum logosu (`image`) boşsa kurum adı yazı olarak gösterilir. `hero.eyebrow` alan adı geriye uyumluluk için korunur ama artık isim altındaki ünvan satırıdır.
+- `hero.taglineHighlight` sloganın "büyüyen" kısmıdır: `Hero.jsx` onu harflere böler ve ağırlığı 300'den 800'e çıkarır. Öncesi ince, sonrası kalın yazılır; metinde birebir geçmeli.
+- Bölüm başlıklarının üstüne etiket (eyebrow) koyma; başlık tek başına durur.
 
 ---
 
-## Sayfalar ve Bölümler
+## Admin Paneli
 
-### Ana Sayfa (index.html)
-1. **Hero** — Işıl Hoca'nın güçlü bir ilk izlenimi, kısa başlık + CTA
-2. **Hakkımda** — Biyografi, uzmanlık alanları, kısa bir hikaye
-3. **Hizmetler / Dersler** — Verdiği ders ve hizmetlerin kartları
-4. **Referanslar** — Öğrenci / veli yorumları
-5. **İletişim** — Form + iletişim bilgileri
+- `/admin/*` `middleware.js` ile korunur. Supabase env yoksa `/`'a yönlendirir (admin Supabase'siz çalışmaz).
+- Giriş sayfası `app/admin/login`, panel `app/admin/(panel)` route group'unda; login sidebar almaz.
+- Yetki Supabase RLS'te: yalnızca `admins` tablosundaki e-postalar içerik yazabilir ve mesaj okuyabilir. Yeni admin = Supabase Auth'ta kullanıcı + `admins` tablosuna e-posta. Auth'ta public sign-up kapalı olmalı.
+- Server action'lar hata fırlatmaz, `{ ok, error }` döner (prod'da fırlatılan hata mesajları maskelenir).
+- `admin.css` iç araç olduğu için AGENT.md token kuralından muaftır.
 
 ---
 
 ## Kod Kuralları
 
-### Genel
-- Mobile-first CSS yaz
-- CSS custom property kullan, hardcode değer yazma
-- BEM veya basit, açıklayıcı class isimleri
-- JavaScript minimal tut — DOM manipülasyonu için framework gerekmez
-
-### İçerik
-- HTML içine asla sabit metin yazma
-- Tüm metinler `content/*.json` dosyalarından `content.js` aracılığıyla gelmeli
-- Görseller için `public/images/` kullan, yolları JSON'da tut
-
-### Bileşenler
-- Her bölüm kendi CSS bloğuna sahip olmalı
-- Bileşenler props/data nitelikleri aracılığıyla özelleştirilebilir olmalı
+- Mobile-first CSS, CSS custom property, BEM-vari açıklayıcı class isimleri
+- Server component varsayılan; `'use client'` yalnızca etkileşim gerekiyorsa
+- Yorum satırı ekleme; iyi isimlendirme yeterli
+- Framework veya kütüphane eklemeden önce sor
+- Dış linklerde `target="_blank" rel="noopener noreferrer"`
 
 ### Performans
-- Kritik CSS satır içi (inline) olmalı
-- Görseller için `loading="lazy"` kullan
-- Font'lar için `font-display: swap`
-- İlk yükleme (LCP) 2.5s altında hedefle
+- Ana sayfa statik + ISR; `getContent` `cookies()` kullanmaz (kullanırsa sayfa dinamikleşir)
+- Hero görseli `priority`, uzak görseller `unoptimized`; kurum logoları düz `<img loading="lazy">`
+- `font-display: swap`, iframe `loading="lazy"`
+- LCP hedefi 2.5s altı
 
 ---
 
-## Yapma Kuralları
+## Ortam Değişkenleri
 
-- Yorum satırı ekleme — iyi isimlendirilmiş değişkenler ve etiketler yeterli
-- Framework kurmadan önce sor
-- İçeriği hardcode etme
-- CMS için tasarlanmamış özel bir admin paneli yapma — CMS ayrı bir proje olacak
-- Renk, boşluk veya animasyon için AGENT.md dışında değer türetme
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+```
+`.env.example` şablon, `.env.local` lokal değerler (git'e girmez). Vercel'de aynı iki değişken tanımlı olmalı.
+
+---
+
+## Komutlar
+
+```
+npm run dev              # geliştirme (3000 doluysa: npx next dev -p 3001)
+npm run build            # üretim derlemesi
+npm run start
+```
 
 ---
 

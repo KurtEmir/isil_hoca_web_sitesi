@@ -1,53 +1,74 @@
-import { getContent } from '../lib/content'
+import { getContent } from '@/lib/content'
+import ArrowIcon from '@/components/ArrowIcon'
+
+const externalLinkProps = { target: '_blank', rel: 'noopener noreferrer' }
 
 export default async function Media() {
   const media = await getContent('media')
-  const f = media.featured
+  const f     = media.featured ?? {}
+  const press = (media.press ?? []).filter(p => p.title)
 
   return (
-    <section className="section section--tinted" id="media" aria-labelledby="media-title">
+    <section className="section surface-black media" id="media" aria-labelledby="media-title">
       <div className="container">
-        <div className="section-header reveal">
-          <span className="t-eyebrow">{media.eyebrow}</span>
-          <h2 className="t-headline" id="media-title">{media.title}</h2>
+        <div className="section-head">
+          <h2 className="t-heading" id="media-title">{media.title}</h2>
         </div>
 
-        <div className="media__featured reveal">
-          <div className="media__video-frame">
-            {f.videoId ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${f.videoId}`}
-                allowFullScreen
-                title={f.title}
-              />
-            ) : (
-              <div className="media__video-placeholder">
-                <div className="media__video-play" aria-label="Video yakında eklenecek">▶</div>
-                <span className="t-muted">Yakında eklenecek</span>
-              </div>
-            )}
+        <div className="grid-12 media__featured">
+          <div className="media__screen">
+            {media.featuredBadge && <p className="media__badge">{media.featuredBadge}</p>}
+
+            <div className="media__video">
+              {f.videoId ? (
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${encodeURIComponent(f.videoId)}`}
+                  title={f.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="media__video-placeholder">
+                  <div className="media__video-play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                      <path d="M8 5.5v13l11-6.5z" />
+                    </svg>
+                  </div>
+                  <span>{media.videoPlaceholder}</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="media__featured-info">
-            <span className="media__featured-badge">Öne Çıkan</span>
+          <div className="media__info">
             <h3 className="media__featured-title">{f.title}</h3>
-            <p className="media__featured-source">{f.source} · {f.host}</p>
+            <p className="media__featured-source">{[f.source, f.host].filter(Boolean).join(' · ')}</p>
             <p className="media__featured-desc">{f.description}</p>
           </div>
         </div>
 
-        <div className="media__press-grid">
-          {media.press.map((p, i) => (
-            <div key={p.title} className={`media__press-card reveal reveal--delay-${i + 1}`}>
-              <span className="media__press-type">{p.type}</span>
-              <h4 className="media__press-title">{p.title}</h4>
-              <div className="media__press-meta">
-                <span className="media__press-source">{p.source}</span>
-                <span className="media__press-date">{p.date}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+        {press.length > 0 && (
+          <div className="media__press">
+            {media.listTitle && <h3 className="t-subhead">{media.listTitle}</h3>}
+            <ul className="press" role="list">
+              {press.map((p, i) => {
+                const Row      = p.url ? 'a' : 'div'
+                const rowProps = p.url ? { href: p.url, ...externalLinkProps } : {}
+                return (
+                  <li key={i}>
+                    <Row className="grid-12 press__item" {...rowProps}>
+                      <span className="press__date">{p.date}</span>
+                      <h4 className="press__title">{p.title}</h4>
+                      <span className="press__meta">{[p.source, p.type].filter(Boolean).join(' · ')}</span>
+                      {p.url && <ArrowIcon />}
+                    </Row>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   )

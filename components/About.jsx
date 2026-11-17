@@ -1,40 +1,40 @@
-import { getContent } from '../lib/content'
+import { getContent } from '@/lib/content'
 
 export default async function About() {
   const about = await getContent('about')
+  const [lead, ...rest] = (about.bio ?? []).filter(Boolean)
+  const roles = (about.roles ?? []).filter(r => r.org || r.role)
+
   return (
-    <section className="section section--tinted" id="about" aria-labelledby="about-title">
+    <section className="section" id="about" aria-labelledby="about-title">
       <div className="container">
-        <div className="section-header reveal">
-          <span className="t-eyebrow">{about.eyebrow}</span>
-          <h2 className="t-headline" id="about-title">{about.title}</h2>
+        <div className="section-head">
+          <h2 className="t-heading" id="about-title">{about.title}</h2>
         </div>
 
-        <div className="about__grid">
-          <div className="about__bio reveal">
-            {about.bio.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
+        <div className="grid-12 about__body">
+          {lead && <p className="about__lead">{lead}</p>}
 
-          <div className="about__stats">
-            {about.stats.map((s, i) => (
-              <div key={s.label} className={`about__stat reveal reveal--delay-${i + 1}`}>
-                <div className="about__stat-value">{s.value}</div>
-                <div className="about__stat-label">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <p className="about__roles-title reveal">Kuruculuk &amp; Danışmanlık Rolleri</p>
-
-        <div className="about__roles">
-          {about.roles.map((r, i) => (
-            <div key={r.org} className={`about__role reveal reveal--delay-${(i % 4) + 1}`}>
-              <div className="about__role-label">{r.role}</div>
-              <div className="about__role-org">{r.org}</div>
-              <p className="about__role-desc">{r.description}</p>
+          {rest.length > 0 && (
+            <div className="about__more">
+              {rest.map((p, i) => <p key={i}>{p}</p>)}
             </div>
-          ))}
+          )}
+
+          {roles.length > 0 && (
+            <div className="roles">
+              {about.rolesTitle && <h3 className="t-subhead">{about.rolesTitle}</h3>}
+              <ul className="roles__list" role="list">
+                {roles.map((r, i) => (
+                  <li key={i} className="grid-12 roles__item">
+                    <h4 className="roles__org">{r.org}</h4>
+                    {r.role && <p className="roles__role">{r.role}</p>}
+                    {r.description && <p className="roles__desc">{r.description}</p>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>

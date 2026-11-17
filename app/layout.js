@@ -1,36 +1,42 @@
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Host_Grotesk } from 'next/font/google'
+import { getContent } from '@/lib/content'
 import './globals.css'
 
-const playfair = Playfair_Display({
-  subsets:  ['latin'],
-  weight:   ['400', '500', '600', '700'],
-  style:    ['normal', 'italic'],
-  variable: '--font-display',
+const hostGrotesk = Host_Grotesk({
+  subsets:  ['latin', 'latin-ext'],
+  variable: '--font-host',
   display:  'swap',
 })
 
-const inter = Inter({
-  subsets:  ['latin'],
-  weight:   ['300', '400', '500', '600'],
-  variable: '--font-body',
-  display:  'swap',
-})
+function safeUrl(value) {
+  try { return new URL(value) } catch { return undefined }
+}
 
-export const metadata = {
-  title:       'Dr. Işıl Boy Ergül — Eğitim Teknolojileri Uzmanı',
-  description: 'Dr. Işıl Boy Ergül — Eğitim Teknolojileri Uzmanı, Girişimci & Akademisyen. Öğretmen Gelişir, Toplum Değişir.',
-  openGraph: {
-    title:       'Dr. Işıl Boy Ergül',
-    description: 'Eğitim Teknolojileri Uzmanı, Girişimci & Akademisyen',
-    type:        'website',
-    url:         'https://teacherx.online',
-  },
+export async function generateMetadata() {
+  const site = await getContent('site')
+  const title = `${site.name} — ${site.description}`
+
+  return {
+    metadataBase: safeUrl(site.url),
+    title,
+    description: `${site.name} — ${site.description}. ${site.tagline}.`,
+    openGraph: {
+      title:       site.name,
+      description: site.description,
+      type:        'website',
+      url:         site.url,
+      locale:      'tr_TR',
+      siteName:    site.name,
+    },
+  }
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="tr" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="tr" className={hostGrotesk.variable}>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }

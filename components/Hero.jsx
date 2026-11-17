@@ -1,59 +1,121 @@
 import Image from 'next/image'
-import { existsSync } from 'fs'
-import { join } from 'path'
-import { getContent } from '../lib/content'
+import { getContent } from '@/lib/content'
+import { resolveImage } from '@/lib/images'
+import ArrowIcon from '@/components/ArrowIcon'
 
-export default async function Hero() {
-  const hero = await getContent('hero')
-  const photoPath   = join(process.cwd(), 'public/images/isil-boy-ergul.jpg')
-  const photoExists = existsSync(photoPath)
+const WEIGHT_FROM = 300
+const WEIGHT_TO   = 800
+
+function splitTitle(title, grow) {
+  if (!grow || !title.includes(grow)) return null
+  const index = title.indexOf(grow)
+  return { start: title.slice(0, index), grow, end: title.slice(index + grow.length) }
+}
+
+function GrowingWord({ text }) {
+  const letters = Array.from(text)
+  const steps   = Math.max(letters.length - 1, 1)
 
   return (
-    <section className="hero" id="home" aria-label="Tanıtım">
-      <div className="hero__content">
-        <div className="hero__eyebrow">
-          <span className="hero__eyebrow-dot" aria-hidden="true" />
-          <span className="t-eyebrow">{hero.eyebrow}</span>
+    <span className="grow">
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {letters.map((letter, i) => (
+          <span
+            key={i}
+            className="grow__letter"
+            style={{ '--w': Math.round(WEIGHT_FROM + ((WEIGHT_TO - WEIGHT_FROM) * i) / steps), '--i': i }}
+          >
+            {letter}
+          </span>
+        ))}
+      </span>
+    </span>
+  )
+}
+
+export default async function Hero() {
+  const hero  = await getContent('hero')
+  const photo = resolveImage(hero.photo?.src)
+  const ctas  = (hero.cta ?? []).filter(c => c.text && c.href)
+  const stats = (hero.stats ?? []).filter(s => s.value)
+  const title = hero.tagline || hero.name
+  const parts = splitTitle(title, hero.taglineHighlight)
+  const roles = (hero.eyebrow ?? '').split('·').map(r => r.trim()).filter(Boolean)
+
+  return (
+    <section className={`hero surface-red${photo ? '' : ' hero--no-photo'}`} id="home" aria-labelledby="hero-title">
+      <div className="container grid-12 hero__stage">
+        <div className="hero__copy">
+          <div className="hero__poster">
+            <p className="hero__title">
+              {parts ? (
+                <>
+                  {parts.start && <span className="hero__title-start">{parts.start}</span>}
+                  <GrowingWord text={parts.grow} />
+                  {parts.end && <span className="hero__title-end">{parts.end}</span>}
+                </>
+              ) : title}
+            </p>
+          </div>
+
+          {hero.quote && (
+            <blockquote className="hero__quote">
+              <p>&ldquo;{hero.quote}&rdquo;</p>
+            </blockquote>
+          )}
+
+          <div className="hero__side">
+            <div className="hero__byline">
+              <h1 className="hero__name" id="hero-title">{hero.name}</h1>
+              {roles.length > 0 && (
+                <p className="hero__roles">
+                  {roles.map((role, i) => (
+                    <span key={i} className="hero__role">{role}</span>
+                  ))}
+                </p>
+              )}
+            </div>
+
+            {ctas.length > 0 && (
+              <div className="hero__act">
+                {ctas.map((c, i) => (
+                  c.variant === 'secondary'
+                    ? <a key={i} className="link" href={c.href}>{c.text}</a>
+                    : <a key={i} className="btn btn--light" href={c.href}>{c.text}<ArrowIcon /></a>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        <h1 className="hero__name">
-          {hero.name.split('Işıl')[0]}
-          <em>Işıl</em>
-          {hero.name.split('Işıl')[1]}
-        </h1>
-
-        <p className="hero__tagline">{hero.tagline}</p>
-
-        <p className="hero__quote">&ldquo;{hero.quote}&rdquo;</p>
-
-        <div className="btn-row">
-          {hero.cta.map(c => (
-            <a key={c.href} className={`btn btn--${c.variant}`} href={c.href}>
-              {c.text}
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div className="hero__visual" aria-hidden="true">
-        <div className="hero__photo-frame">
-          {photoExists ? (
+        {photo && (
+          <figure className="hero__figure">
             <Image
-              src="/images/isil-boy-ergul.jpg"
-              alt={hero.photo.alt}
+              src={photo.src}
+              alt={hero.photo?.alt || hero.name}
               fill
               priority
-              className="hero__photo-img"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              unoptimized={photo.remote}
+              className="hero__figure-img"
+              sizes="(max-width: 768px) 100vw, 45vw"
             />
-          ) : (
-            <div className="hero__photo-placeholder">
-              <span className="hero__photo-placeholder-initials">IBE</span>
-              <span className="hero__photo-placeholder-label">Dr. Işıl Boy Ergül</span>
-            </div>
-          )}
-        </div>
+          </figure>
+        )}
       </div>
+
+      {stats.length > 0 && (
+        <div className="container">
+          <ul className="hero__facts" role="list">
+            {stats.map((s, i) => (
+              <li key={i} className="hero__fact">
+                <span className="hero__fact-value">{s.value}</span>
+                <span className="hero__fact-label">{s.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   )
 }

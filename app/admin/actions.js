@@ -1,32 +1,37 @@
 'use server'
 import { revalidatePath } from 'next/cache'
-import { redirect }       from 'next/navigation'
-import { createServerSupabaseClient } from '../../lib/supabase/server'
-import * as staticData from '../../content/data'
+import { redirect } from 'next/navigation'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { CONTENT_SECTIONS } from '@/lib/content'
+import * as staticData from '@/content/data'
 
 export async function saveContent(section, data) {
-  const supabase = await createServerSupabaseClient()
+  if (!CONTENT_SECTIONS.includes(section)) return { ok: false, error: `Geçersiz bölüm: ${section}` }
+  if (!data || typeof data !== 'object')   return { ok: false, error: 'Kaydedilecek veri boş.' }
 
+  const supabase = await createServerSupabaseClient()
   const { error } = await supabase
     .from('content')
-    .upsert({ section, data, updated_at: new Date().toISOString() }, { onConflict: 'section' })
+    .upsert({ section, data }, { onConflict: 'section' })
 
-  if (error) throw new Error(error.message)
+  if (error) return { ok: false, error: error.message }
 
-  revalidatePath('/')
+  revalidatePath('/', 'layout')
+  return { ok: true }
 }
 
 export async function seedContent() {
   const supabase = await createServerSupabaseClient()
-  const sections = ['site', 'hero', 'about', 'expertise', 'media', 'insights', 'contact']
+  const rows = CONTENT_SECTIONS.map(section => ({ section, data: staticData[section] }))
 
-  for (const section of sections) {
-    await supabase
-      .from('content')
-      .upsert({ section, data: staticData[section] }, { onConflict: 'section', ignoreDuplicates: true })
-  }
+  const { error } = await supabase
+    .from('content')
+    .upsert(rows, { onConflict: 'section', ignoreDuplicates: true })
 
-  revalidatePath('/')
+  if (error) return { ok: false, error: error.message }
+
+  revalidatePath('/', 'layout')
+  return { ok: true }
 }
 
 export async function logout() {

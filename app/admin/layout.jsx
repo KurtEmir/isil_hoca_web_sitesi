@@ -1,13 +1,10 @@
-import '../../styles/admin.css'
-import AdminSidebar from '../../components/admin/AdminSidebar'
+import '@/styles/admin.css'
 
-export const metadata = { title: 'Admin — Dr. Işıl Boy Ergül' }
+export const metadata = {
+  title:  'Admin — Dr. Işıl Boy Ergül',
+  robots: { index: false, follow: false },
+}
 
-export default function AdminLayout({ children }) {
-  return (
-    <div className="admin-layout">
-      <AdminSidebar />
-      <div className="admin-main">{children}</div>
-    </div>
-  )
+export default function AdminRootLayout({ children }) {
+  return children
 }
