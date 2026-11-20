@@ -84,21 +84,36 @@ export const about = {
 
 export const journey = {
   title: "Yolculuğum",
+  intro: "Bir üniversite kampüsünde başlayan zirve; bir girişime, uluslararası sahnelere ve 50 binden fazla öğretmene uzandı. Üç hat, tek bir fikir: öğretmen gelişir, toplum değişir.",
+  tracks: ["Zirve", "Girişim", "Uluslararası"],
   items: [
-    { year: "2014", title: "Eğitim Teknolojileri Zirvesi", text: "ETZ ilk kez düzenlendi; zirve bugün 13. yılında." },
-    { year: "2015", title: "Apple Distinguished Educator", text: "Apple tarafından Apple Distinguished Educator olarak tanındı." },
-    { year: "2020", title: "TeacherX kuruldu", text: "Doktora tezine dayanan platform 17 Eylül'de kuruldu; ilk eğitim 24 Kasım Öğretmenler Günü'nde yayına girdi." },
-    { year: "2022", title: "Avrupa açılımı", text: "TeacherX İngiltere'de şirket kurdu ve Avrupa'daki eğitim kurumlarından talep almaya başladı." },
-    { year: "2025", title: "ETZ25 · Dijital Uyanış", text: "12. zirve “Yapay Zeka Çağında Eğitim” temasıyla 1 Mart'ta düzenlendi." },
-    { year: "2026", title: "ETZ26 · Yıkıcı Paradigmalar", text: "13. zirvenin teması: Yapay Genel Zeka ve Kuantum." }
+    { year: "2014", track: "Zirve",        title: "Eğitim Teknolojileri Zirvesi başladı", text: "31 Mayıs'ta Yıldız Teknik Üniversitesi Davutpaşa Kampüsü'nde Türkiye'nin ilk eğitim teknolojileri zirvesi düzenlendi." },
+    { year: "2015", track: "Uluslararası", title: "Apple Distinguished Educator",          text: "Apple tarafından Apple Distinguished Educator olarak tanındı." },
+    { year: "2017", track: "Zirve",        title: "ETZ17 · Sihre Yolculuk",                text: "“Sihre Yolculuk” temalı zirve yaklaşık 1.500 katılımcıyı buluşturdu." },
+    { year: "2020", track: "Girişim",      title: "TeacherX kuruldu",                      text: "Doktora tezine dayanan platform 17 Eylül'de kuruldu; ilk eğitim 24 Kasım Öğretmenler Günü'nde yayına girdi." },
+    { year: "2021", track: "Zirve",        title: "ETZ21 · Toplum 5.0",                    text: "8. zirve çevrim içi yapıldı; Andreas Schleicher'in de aralarında olduğu yaklaşık 70 konuşmacı katıldı." },
+    { year: "2021", track: "Girişim",      title: "İlk yıl: 6.000 öğretmen",               text: "TeacherX ilk yılında Türkiye'den ve dünyadan 6 bine yakın öğretmene ulaştı; 124 devlet öğretmeni eğitimlerle sosyal sorumluluk kapsamında buluştu." },
+    { year: "2021", track: "Uluslararası", title: "TeacherX İngiltere'de",                 text: "TeacherX Ltd 28 Eylül'de İngiltere'de kuruldu; Fransa'daki Türkçe öğretmenleri mesleki gelişimleri için TeacherX'i seçti." },
+    { year: "2023", track: "Girişim",      title: "CertifiX kuruldu",                      text: "Öğrencilerin okul içi ve dışı tüm sertifikalarını tek yerde toplayan blockchain tabanlı platform 29 Nisan'da kuruldu." },
+    { year: "2023", track: "Girişim",      title: "Etki yatırımı",                         text: "TeacherX, Türkiye'nin ilk etki yatırım fonu Founder One'dan yatırım aldı." },
+    { year: "2023", track: "Uluslararası", title: "Avrupa yarı finali",                    text: "TeacherX, Avrupa EdTech Startup yarışmasında yarı finale yükseldi." },
+    { year: "2024", track: "Uluslararası", title: "BETT Londra finali",                    text: "TeacherX, Küresel Eğitim Teknolojileri Ödülleri'nde Avrupa ikincisi olarak BETT finaline kaldı; ilk üç yılda 20 binden fazla öğretmene ulaşılmıştı." },
+    { year: "2024", track: "Uluslararası", title: "OEB Global, Berlin",                    text: "“AI Unleashed: Redefining the Learning Experience” başlıklı konuşmayı yaptı." },
+    { year: "2025", track: "Zirve",        title: "ETZ25 · Dijital Uyanış",                text: "12. zirve 1 Mart'ta “Yapay Zeka Çağında Eğitim” temasıyla 2.000'i aşkın katılımcıyı ve 60'tan fazla oturumu buluşturdu." },
+    { year: "2025", track: "Girişim",      title: "50 bin öğretmen",                       text: "TeacherX beş yılı aşkın sürede 500'den fazla kurum ve 50 binden fazla öğretmene ulaştı." },
+    { year: "2026", track: "Zirve",        title: "ETZ26 · Yıkıcı Paradigmalar",           text: "13. zirve 28 Mart'ta İstanbul'da “Yapay Genel Zeka ve Kuantum” temasıyla düzenlendi." }
   ]
 };
 
 export const spotlight = {
-  image: "/images/isil-boy-ergul-dekupe.webp",
-  alt: "Dr. Işıl Boy Ergül",
+  photos: [
+    { src: "/images/spotlight/etz-sahne.webp",         alt: "Dr. Işıl Boy Ergül, Eğitim Teknolojileri Zirvesi sahnesinde konuşurken", caption: "Eğitim Teknolojileri Zirvesi sahnesinde", position: "62% 30%" },
+    { src: "/images/spotlight/etz25-roportaj.webp",    alt: "Dr. Işıl Boy Ergül, ETZ25'te mikrofon uzatılmış bir röportajda",       caption: "ETZ25 · Dijital Uyanış röportajı",       position: "70% 35%" },
+    { src: "/images/spotlight/etz-konusma-salon.webp", alt: "Dolu bir salonda sahnede konuşan Dr. Işıl Boy Ergül",                  caption: "“Gelecek Nesil Öğretmenler” konuşması",  position: "55% 60%" }
+  ],
   backdrop: "Human+",
   caption: "İnsan ve yapay zekanın sinerjisi.",
+  summary: "2014'ten bu yana Eğitim Teknolojileri Zirvesi'ni yürütüyor; doktora tezine dayanarak kurduğu TeacherX ile 50 binden fazla öğretmene ulaştı. Okullara ve kurumlara yapay zeka okuryazarlığı ve dijital dönüşüm üzerine eğitim ve danışmanlık veriyor, uluslararası sahnelerde konuşuyor. Human+ yaklaşımında yapay zeka öğretmenin yerini almaz, kapasitesini genişletir.",
   captionSource: "Human+ yaklaşımı · Dr. Işıl Boy Ergül",
   equation: ["Öğretmen", "Yapay Zeka", "Human+"]
 };

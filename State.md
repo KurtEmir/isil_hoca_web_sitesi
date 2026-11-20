@@ -1,6 +1,6 @@
 # State.md — Proje Durumu
 
-**Son güncelleme:** 2026-11-12
+**Son güncelleme:** 2026-11-17
 
 ---
 
@@ -8,13 +8,18 @@
 
 Next.js 15 (App Router) + Supabase üzerinde çalışan tek sayfalık site ve admin paneli. Ana sayfa statik üretilip (ISR, 1 saat) admin kaydettiğinde anında yenileniyor. Admin panelinde 12 içerik bölümü (Site Ayarları, Hero, Hakkımda, Yolculuk, Human+ Bandı, Uzmanlık, Platformlar, Davet Seçenekleri, Medya, Manifesto, Görüşler, İletişim) ve gelen mesajlar ekranı var.
 
+### 2026-11-17 revizyonları
+- **Hero rakamları:** kırmızının yorduğu geri bildirimi üzerine rakamlar kırmızı alanın altındaki kâğıt şeride taşındı (`.hero__ground`). Rakamlar kırmızı, görünce 0'dan sayıp 300'den 800'e kalınlaşıyor (`components/HeroFacts.jsx`, client). JS yoksa ve `prefers-reduced-motion` açıkken son değer statik görünür.
+- **Yolculuğum:** 6 duraktan 15 olaya genişletildi, hepsi kaynakla doğrulandı. Yeni şema: üç hatlı metro haritası (Zirve / Girişim / Uluslararası) + yıl yıl ayrıntılı liste. Yeni alanlar: `journey.intro`, `journey.tracks[]`, `items[].track`. Düzeltme: TeacherX Ltd 28 Eylül 2021'de kuruldu (2022 değil). ETZ26 teması kaynaklarda İngilizce "AI & Quantum" geçiyor; "Yapay Genel Zeka" ifadesi Işıl Hoca'ya doğrulatılmalı.
+- **Human+ bandı:** duotone portre kaldırıldı; yerine 3 iş fotoğrafı galerisi (`spotlight.photos[]`: `src`, `alt`, `caption`, `position`) ve 3 cümlelik özet (`spotlight.summary`). `spotlight.image` geriye uyumluluk için okunuyor. `DuotoneFilter.jsx` silindi. Fotoğraflar ETZ arşivi ve YouTube kanalından; yüksek çözünürlüklü orijinaller istenmeli.
+
 ### 2026-11-12 yeniden tasarım — "Kırmızı Manifesto"
 Önceki tasarım (Bricolage Grotesque + Inter + Instrument Serif, kırmızı istatistik bandı, eyebrow etiketleri) "AI slop" bulunduğu için değiştirildi. Impeccable skill'inin yöntemiyle üç yön sunuldu; kullanıcı "Kırmızı Manifesto"yu seçti. Ardından sayfa uzatıldı, görsellerle ve şemalarla zenginleştirildi (yön sözleşmesi AGENT.md'de).
 - **Font:** tek aile Host Grotesk (Element Type, İstanbul; variable 300–800, uniwidth).
 - **Sayfa sırası:** hero → hakkımda → yolculuk → Human+ bandı → uzmanlık → platformlar → davet seçenekleri → kurumlar → medya → manifesto → görüşler → iletişim + footer.
 - **Hero:** kırmızı zemin. Solda slogan ("Öğretmen" ince, "Gelişir," harf harf inceden kalına büyüyor, "Toplum Değişir." kalın), alıntı, imza ve CTA; sağda büyük, renkli dekupe portre; altta rakamlar.
 - **Yolculuğum** (`journey`): metro hattı zaman çizelgesi. Duraklar: 2014 ETZ, 2015 Apple Distinguished Educator, 2020 TeacherX, 2022 İngiltere, 2025 ETZ25, 2026 ETZ26. Kaynaklar: teacherx.online/about, oeb.global/node/13070, paradergi.com.tr (24.02.2022 ve 18.03.2025), hurriyet.com.tr (31.01.2021).
-- **Human+ bandı** (`spotlight`): kırmızı zeminde duotone portre, dev "Human+" ve [Öğretmen] + [Yapay Zeka] = [Human+] denklem şeması.
+- **Human+ bandı** (`spotlight`): kırmızı zeminde duotone portre, dev "Human+" ve [Öğretmen] + [Yapay Zeka] = [Human+] denklem şeması. (2026-11-17'de galeriye dönüştü.)
 - **Kurduğum Platformlar** (`platforms`, siyah): ekosistem döngü şeması (SVG) ve görselli 2×2 kart (TeacherX, StudentX, CertifiX, ETZ). Görseller kurumların kendi sitelerinden alındı (`public/images/platforms/`). TeacherX rakamları teacherx.online/about'tan.
 - **Birlikte neler yapabiliriz?** (`offers`): keynote, öğretmen eğitimi, danışmanlık; her biri iletişim formuna bağlı.
 - **Neye inanıyorum?** (`manifesto`, kırmızı): sitedeki mevcut yazılardan türetilmiş 4 ilke.

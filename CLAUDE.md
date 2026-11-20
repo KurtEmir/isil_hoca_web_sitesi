@@ -54,12 +54,12 @@ isil_hoca_web_sitesi/
 │           ├── site/ hero/ about/ journey/ spotlight/ expertise/ platforms/ offers/ media/ manifesto/ insights/ contact/
 │           └── messages/       # Gelen mesajlar (salt okunur)
 ├── components/                 # Site bölümleri (server) + Nav/Contact (client)
-│   ├── Hero.jsx                # Kırmızı afiş: büyüyen slogan, duotone fotoğraf filtresi, rakamlar
-│   ├── Journey.jsx             # Yolculuk: metro hattı zaman çizelgesi
-│   ├── Spotlight.jsx           # Human+ bandı: duotone portre + denklem şeması
+│   ├── Hero.jsx                # Kırmızı afiş: büyüyen slogan, figür, kâğıt şeritte rakamlar
+│   ├── HeroFacts.jsx           # Hero rakamları: görünce sayan, kalınlaşan sayaç (client)
+│   ├── Journey.jsx             # Yolculuk: hat haritası + yıl yıl liste
+│   ├── Spotlight.jsx           # Human+ bandı: iş fotoğrafları galerisi + özet + denklem
 │   ├── Platforms.jsx           # Ekosistem şeması + platform kartları
 │   ├── EcosystemDiagram.jsx    # Veriden çizilen SVG döngü şeması
-│   ├── DuotoneFilter.jsx       # Kırmızı-siyah duotone SVG filtresi
 │   ├── Offers.jsx Manifesto.jsx  # Davet seçenekleri, ilkeler
 │   ├── Affiliations.jsx        # Kurum/yayın listesi (about.affiliations'tan okur)
 │   ├── ArrowIcon.jsx           # Buton ve linklerdeki ok ikonu
@@ -75,7 +75,7 @@ isil_hoca_web_sitesi/
 ├── middleware.js               # /admin koruması
 ├── styles/                     # tokens.css, main.css, admin.css
 ├── supabase/schema.sql         # Tablolar, RLS, admins listesi (idempotent)
-└── public/images/             # portre dekupesi + platforms/ (TeacherX, CertifiX, ETZ görselleri)
+└── public/images/             # portre dekupesi + platforms/ (TeacherX, CertifiX, ETZ) + spotlight/ (iş fotoğrafları)
 ```
 
 ---
@@ -87,7 +87,7 @@ isil_hoca_web_sitesi/
 - Yeni bir **bölüm** eklerken: `CONTENT_SECTIONS` (`lib/content.js`), `data.js`, component, editör sayfası, sidebar + dashboard kartı.
 - Liste elemanlarında `key` olarak index kullan; admin boş veya aynı başlıklı eleman ekleyebilir.
 - Boş bırakılan opsiyonel alanlar (link, sosyal medya URL'si, CTA) arayüzde gizlenir; `#` gibi sahte linkler kullanma.
-- Görseller `public/images/` altında; hero ve Human+ bandı fotoğrafı `/images/...` yolu ya da doğrudan https görsel linki (`lib/images.js` → `resolveImage`).
+- Görseller `public/images/` altında; hero ve Human+ bandı fotoğrafları `/images/...` yolu ya da doğrudan https görsel linki (`lib/images.js` → `resolveImage`).
 - Hero'daki rakamlar `hero.stats`'tan, kurum listesi `about.affiliations`'tan, menü butonu `site.navCta`'dan okunur. Kurum logosu (`image`) boşsa kurum adı yazı olarak gösterilir. `hero.eyebrow` alan adı geriye uyumluluk için korunur ama artık isim altındaki ünvan satırıdır.
 - `hero.taglineHighlight` sloganın "büyüyen" kısmıdır: `Hero.jsx` onu harflere böler ve ağırlığı 300'den 800'e çıkarır. Öncesi ince, sonrası kalın yazılır; metinde birebir geçmeli.
 - Bölüm başlıklarının üstüne etiket (eyebrow) koyma; başlık tek başına durur.

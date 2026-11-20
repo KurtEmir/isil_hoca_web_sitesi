@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { getContent } from '@/lib/content'
 import { resolveImage } from '@/lib/images'
 import ArrowIcon from '@/components/ArrowIcon'
+import HeroFacts from '@/components/HeroFacts'
 
 const WEIGHT_FROM = 300
 const WEIGHT_TO   = 800
@@ -105,15 +106,10 @@ export default async function Hero() {
       </div>
 
       {stats.length > 0 && (
-        <div className="container">
-          <ul className="hero__facts" role="list">
-            {stats.map((s, i) => (
-              <li key={i} className="hero__fact">
-                <span className="hero__fact-value">{s.value}</span>
-                <span className="hero__fact-label">{s.label}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="hero__ground">
+          <div className="container">
+            <HeroFacts stats={stats} />
+          </div>
         </div>
       )}
     </section>

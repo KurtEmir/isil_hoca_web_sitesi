@@ -14,8 +14,8 @@ Tasarım 2026-11-12'de ikinci kez, **Impeccable** (pbakaus/impeccable) skill'ini
 
 ## Tasarım Fikri (yön sözleşmesi)
 
-- **TEZ:** Slogan sitenin kendisidir. "Öğretmen Gelişir, Toplum Değişir" tipografiyle anlatılır: *Öğretmen* ince (300), *Gelişir,* harf harf inceden kalına büyür, *Toplum Değişir.* en kalın (800). Reddedilen kalıp: başlık + foto bölünmüş hero, renkli zeminli istatistik kartları/bandı, kart ızgarası, başlık üstü etiketler. Hero'nun en altındaki ince çizgili 4 rakamlık satır bilinçli olarak tutulur: zemin değiştirmez, kart değildir; rakamlar sayfadaki diğer verilerle (platform kartları vb.) birebir tutarlı olmalı.
-- **DÜNYA:** TeacherX kırmızısı yalnızca üç büyük alanın sahibidir: hero, Human+ bandı ve kapanış (iletişim + footer). 2026-11-15'te kullanıcı "çok kırmızı, göz yoruyor" dedi; yeni renk eklenmedi, kırmızının alanı daraltıldı (~%32 → ~%23): menü çubuğu kâğıt zemin + mürekkep yazı ve kırmızı CTA oldu, manifesto siyaha geçti. Yeni bir kırmızı alan eklemeden önce sor. Ara bölümler beyaz kâğıt üzerinde katı 12 sütunlu ızgara ve kalın siyah çizgilerle kurulur. Üç siyah alan (platformlar, medya, manifesto) ritmi kırar; iki siyah bölüm asla art arda gelmez. Hero'da Işıl Hoca büyük ve tam renklidir; Human+ bandında aynı fotoğraf çerçeve içinde kırmızı-siyah duotone baskıdır.
+- **TEZ:** Slogan sitenin kendisidir. "Öğretmen Gelişir, Toplum Değişir" tipografiyle anlatılır: *Öğretmen* ince (300), *Gelişir,* harf harf inceden kalına büyür, *Toplum Değişir.* en kalın (800). Reddedilen kalıp: başlık + foto bölünmüş hero, renkli zeminli istatistik kartları/bandı, kart ızgarası, başlık üstü etiketler. Hero'nun en altındaki 4 rakamlık satır bilinçli olarak tutulur. 2026-11-17'de kullanıcı hero'daki kırmızıyı yorucu buldu; rakamlar kırmızı alanın altındaki kâğıt şeride (`.hero__ground`) taşındı, figür bu sınırın üstünde durur. Rakamlar kırmızı, ince dikey çizgilerle ayrılır, kart değildir; rakamlar sayfadaki diğer verilerle (platform kartları vb.) birebir tutarlı olmalı.
+- **DÜNYA:** TeacherX kırmızısı yalnızca üç büyük alanın sahibidir: hero, Human+ bandı ve kapanış (iletişim + footer). 2026-11-15'te kullanıcı "çok kırmızı, göz yoruyor" dedi; yeni renk eklenmedi, kırmızının alanı daraltıldı (~%32 → ~%23): menü çubuğu kâğıt zemin + mürekkep yazı ve kırmızı CTA oldu, manifesto siyaha geçti. Yeni bir kırmızı alan eklemeden önce sor. Ara bölümler beyaz kâğıt üzerinde katı 12 sütunlu ızgara ve kalın siyah çizgilerle kurulur. Üç siyah alan (platformlar, medya, manifesto) ritmi kırar; iki siyah bölüm asla art arda gelmez. Hero'da Işıl Hoca büyük ve tam renklidir; Human+ bandında iş ortamından tam renkli 1–3 fotoğraf (sahne, röportaj, salon) yer alır. 2026-11-17'de duotone portre kullanıcı isteğiyle kaldırıldı.
 - **HİKÂYE:** Ziyaretçi önce yüzü ve sloganı görür, alıntıyla düşünceyi okur, rakamlarla kanıtı görür; ardından yolculuk (zaman çizelgesi), Human+ yaklaşımı, uzmanlık, platform ekosistemi, davet seçenekleri, kurumlar, medya, yazılar ve manifestodan geçip kırmızı kapanışta formu doldurur.
 - **İLK EKRAN:** Kırmızı zemin. Solda (7 sütun) slogan sütun genişliğine göre ölçeklenir (`15.6cqi`), altında alıntı, imza ve "Konuşmacı Daveti" (beyaz buton). Sağda arka planı silinmiş büyük renkli figür alt kenara oturur ve rakam satırının ince beyaz çizgisinin üstünde durur. En altta 4 rakam. Sayfanın `h1`'i Işıl Hoca'nın adıdır (imza satırı); slogan görsel olarak afiştir ama `p` olarak işaretlenir. Mobilde sıra: slogan → isim ve ünvan → buton → fotoğraf → alıntı → rakamlar; ilk ekranda kim olduğu okunur.
 - **İMZA ETKİLEŞİM:** "Gelişir" fikri hareket diline dönüşür. Hero'da büyüyen kelime yüklemede canlanır; uzmanlık başlıkları kaydırdıkça 300'den 700'e kalınlaşır (CSS scroll-driven animation); link ve menü hover'ında yazı kalınlaşır. Host Grotesk *uniwidth* olduğu için ağırlık değişirken satır kaymaz.
@@ -29,7 +29,7 @@ Tasarım 2026-11-12'de ikinci kez, **Impeccable** (pbakaus/impeccable) skill'ini
 - Referans siteler (reshmasaujani.com, bernardmarr.com, sigrun.com) yalnızca kategori bilgisidir; görünüm onlardan alınmadı.
 
 ### Sayfa Ritmi
-hero (kırmızı, büyük renkli figür) → hakkımda (beyaz) → yolculuk (beyaz, zaman çizelgesi) → Human+ bandı (kırmızı, duotone portre + denklem) → uzmanlık (beyaz) → platformlar (siyah, ekosistem şeması + kartlar) → davet seçenekleri (beyaz) → kurumlar (beyaz) → medya (siyah) → görüşler (beyaz) → manifesto (siyah) → iletişim + footer (kırmızı, kesintisiz kapanış)
+hero (kırmızı, büyük renkli figür; altında kâğıt zeminde rakamlar) → hakkımda (beyaz) → yolculuk (beyaz, hat haritası + yıl yıl liste) → Human+ bandı (kırmızı, iş fotoğrafları + özet + denklem) → uzmanlık (beyaz) → platformlar (siyah, ekosistem şeması + kartlar) → davet seçenekleri (beyaz) → kurumlar (beyaz) → medya (siyah) → görüşler (beyaz) → manifesto (siyah) → iletişim + footer (kırmızı, kesintisiz kapanış)
 
 ### Token Kuralı
 Aşağıdaki değerler `styles/tokens.css` ile birebir aynıdır; o dosya tek doğruluk kaynağıdır. Yeni değer gerekiyorsa önce `tokens.css`'e ekle, sonra buraya yansıt. `styles/main.css` içinde ham renk, boşluk veya süre değeri yazma.
@@ -69,7 +69,6 @@ Aşağıdaki değerler `styles/tokens.css` ile birebir aynıdır; o dosya tek do
 ### Kurallar
 - Kırmızı, alan rengidir: hero, menü çubuğu, iletişim + footer. Beyaz bölümlerde yalnızca küçük işaretler (rol adları, kategori, yazı kartlarının üst çizgisi) ve kırmızı buton.
 - Kırmızı üstünde metin `--color-on-red` / `--color-on-red-muted`; asla gri. Siyah zeminde kırmızı metin `--color-red-light`.
-- Duotone filtresi (`Hero.jsx` → `#hero-duotone`) renkleri sRGB olarak elle yazılıdır: mürekkep (0.08, 0.053, 0.049) → kırmızı (0.767, 0.069, 0.08) → kâğıt (0.998, 0.983, 0.981). Renk token'ı değişirse bu tabloyu da güncelle.
 - Gradient, glassmorphism, gölge yok.
 
 ---
@@ -100,7 +99,8 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 --text-feature: clamp(1.75rem,  1.3rem + 1.7vw,   2.75rem);  /* öne çıkan video başlığı, footer isim */
 --text-h2:      clamp(2.5rem,   1.4rem + 4.4vw,   5.25rem);  /* bölüm başlıkları */
 --text-closing: clamp(3.25rem,  1.2rem + 8.4vw,   8.75rem);  /* "Birlikte Çalışalım." */
---text-stat:    clamp(1.75rem,  1.4rem + 1.4vw,   2.625rem); /* hero rakamları */
+--text-fact:    clamp(2.25rem,  1.6rem + 2.4vw,   4rem);     /* hero rakamları (kâğıt şerit) */
+--text-xs:      0.8125rem;                                     /* hat haritası durak adları */
 --text-statement: clamp(2rem, 1.15rem + 3.6vw, 4.5rem);      /* manifesto cümleleri */
 
 --poster-size:        15.6cqi; /* hero sloganı, masaüstü (7 sütunluk metin kolonuna göre) */
@@ -160,8 +160,8 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 - **Form (kırmızı zeminde):** etiket üstte, input'lar şeffaf, alt çizgi `--color-on-red-muted`; odakta çizgi beyazlaşır ve zemin `--color-red-deep` olur; zemin ve çizgi `box-shadow` ile iki yana `--sp-3` genişler, metin yerinden kaymaz. Yazılan metin 500, placeholder 300 ağırlıkta (ayrım renkle değil ağırlıkla, kontrast tabanı korunur). Konu bir seçim kutusudur (`contact.subjects`); Davet Seçenekleri'ndeki linkler `data-topic` ile Konu'yu doldurur. Zorunlu olmayan alan "(isteğe bağlı)" diye işaretlenir. Doğrulama tarayıcıya bırakılmaz: hatalı alan kesikli beyaz çizgi alır ve altında `contact.fieldErrors`'tan Türkçe mesaj çıkar; sunucu da aynı kuralı (`lib/contactValidation.js`) uygular.
 - **Medya rozeti:** videonun sol üst köşesinde kırmızı etiket (`media.featuredBadge`). Oynat ikonu kırmızı kare.
 - **Hero figürü:** `hero.photo` arka planı silinmiş (şeffaf) bir fotoğraf olmalı; `object-fit: contain` ile sağ alta oturur. ≤768px'de sıra: slogan → CTA → kare kırpılmış figür (baş-omuz) → alıntı → imza.
-- **Human+ bandı (`Spotlight`):** kırmızı alanda solda duotone portre (4:5 çerçeve, `DuotoneFilter`), sağda dev kelime (`spotlight.backdrop`), açıklama ve denklem şeması: terimler kutu içinde, `+` ve `=` ile bağlanır, son terim beyaz dolgulu sonuçtur. Mobilde işaretler sonraki terimle birlikte kırılır.
-- **Yolculuk:** metro hattı zaman çizelgesi. Yıllar kırmızı, durak noktaları kare, hat 2px mürekkep. ≤1024px'de 3 sütun, ≤768px'de dikey hat.
+- **Human+ bandı (`Spotlight`):** kırmızı alanda üstte fotoğraf galerisi (`spotlight.photos`, en fazla 3: ilki 7 sütun 4:3, diğer ikisi sağda üst üste; tam renk, köşesiz, hover'da hafif yakınlaşma, altında küçük alt yazı; `position` kırpma odağı). Altında solda dev kelime (`spotlight.backdrop`) + kısa açıklama, sağda 2–3 cümlelik özet (`spotlight.summary`) ve denklem şeması: terimler kutu içinde, `+` ve `=` ile bağlanır, son terim beyaz dolgulu sonuçtur. Mobilde ilk fotoğraf tam genişlik, diğer ikisi yan yana.
+- **Yolculuk:** üstte giriş cümlesi (`journey.intro`), ortada veriden çizilen **hat haritası** (metro haritası): yıllar sütun, `journey.tracks` satır. Hat 1 mürekkep, hat 2 kırmızı, hat 3 çift çizgi (ray). Duraklar kare; aynı yıl+hatta birden çok olay varsa kare dolar ve sayıyı gösterir. Hatlar kaydırınca soldan sağa çizilir (`animation-timeline: view()`). Harita `aria-hidden`; asıl içerik altındaki yıl yıl listedir (yıl solda kırmızı ve yapışkan, başlık + hat etiketi, sağda açıklama). ≤768px'de harita yatay kayar, hat adları solda sabit kalır.
 - **Platformlar:** önce ekosistem döngü şeması (`EcosystemDiagram`, veriden çizilen SVG; ilk platform kırmızı çekirdek, oklar saat yönünde, ortada `platforms.center`), yanında `platforms.intro`. Altında 2×2 platform kartı: üstte 3px kırmızı çizgi, 16:10 görsel (hover'da hafif yakınlaşır), görsel yoksa kırmızı zeminde dev isim; isim, rol, açıklama, rakamlar, link. Kart yapısı kullanıcı isteğiyle yalnızca bu bölümde kullanılır.
 - **Davet seçenekleri:** 3 sütunlu tablo, sütunlar ince dikey çizgilerle ayrılır; her sütunda başlık → açıklama → kitle (kırmızı) → link.
 - **Manifesto:** siyah alanda (yazıların ardından, kırmızı kapanıştan hemen önce) büyük cümleler (`--text-statement`, 800) solda, kısa açıklama sağda, alt hizalı.
@@ -189,7 +189,7 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 - Max genişlik `--max-width: 1280px`, menü yüksekliği `--nav-height: 72px`.
 - Hero: `.hero__poster` bir container'dır (`container-type: inline-size`). Slogan ve portre `cqi` ile ölçeklenir, böylece kompozisyon her masaüstü genişliğinde aynı orantıda kalır. ≤768px'de portre sloganın altına iner (%34 genişlik), slogan `21cqi` olur.
 - Kırılımlar: 1024px, 768px, 480px (`main.css` sonunda).
-- Portre için en az 600px genişliğinde dikey (4:5) fotoğraf önerilir; duotone filtre düşük çözünürlüğü kısmen gizler.
+- Human+ galerisi için en az 1600px genişliğinde yatay fotoğraf önerilir.
 
 ---
 
@@ -200,7 +200,9 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 - `hero.eyebrow` = isim altındaki ünvan satırı (alan adı geriye uyumluluk için korunuyor).
 - Rakamlar `hero.stats`, kurumlar `about.affiliations`, menü butonu `site.navCta`, medya rozeti `media.featuredBadge`.
 - Bölümler: `journey` (zaman çizelgesi), `spotlight` (Human+ bandı: `image`, `backdrop`, `caption`, `captionSource`, `equation[]`), `platforms` (`center`, `intro`, kartlarda `short`, `focus`, `image`), `offers`, `manifesto`.
-- Portre `/images/isil-boy-ergul-dekupe.webp`: teacherx.online/about'taki 1356×1653 dekupe. Hero'da renkli, Human+ bandında duotone.
+- Portre `/images/isil-boy-ergul-dekupe.webp`: teacherx.online/about'taki 1356×1653 dekupe, hero'da.
+- Human+ fotoğrafları `public/images/spotlight/`: ETZ sahnesi (ETZ sitesinin 2025 arşiv kopyası), ETZ25 röportajı ve salon konuşması (ETZ YouTube kanalı video kareleri, 1280×720). Daha yüksek çözünürlüklü orijinaller Işıl Hoca/ETZ ekibinden istenmeli.
+- Yolculuk olaylarının her biri kaynakla doğrulandı (teacherx.online/about, Companies House, CNN Türk, Para Dergi, DHA, OEB, EUN). TeacherX Ltd 2021'dir (2022 değil).
 - Platform görselleri `public/images/platforms/`: TeacherX ders ekranı (teacherx.online), CertifiX marka görseli (certifixonline.com), Işıl Hoca'nın ETZ konuşmacı fotoğrafı (egitimteknolojilerizirvesi.com).
 
 ---
