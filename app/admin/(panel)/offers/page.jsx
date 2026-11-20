@@ -3,7 +3,14 @@ import { useSectionContent } from '@/lib/admin/useSectionContent'
 import { updateAt, removeAt } from '@/lib/admin/arrays'
 import { EditorTopbar, Section, Field, ArrayItem, AddButton, SaveBar, Loading } from '@/components/admin/EditorShell'
 
-const emptyOffer = { title: '', description: '', audience: '', topic: '', cta: { text: '', href: '#contact' } }
+const ICON_OPTIONS = [
+  { value: '',        label: 'İkon yok' },
+  { value: 'mic',     label: 'Mikrofon (konuşma)' },
+  { value: 'board',   label: 'Tahta (eğitim, atölye)' },
+  { value: 'compass', label: 'Pusula (danışmanlık, yol haritası)' },
+]
+
+const emptyOffer = { title: '', description: '', audience: '', topic: '', icon: '', cta: { text: '', href: '#contact' } }
 
 export default function OffersEditor() {
   const { data, update, save, saving, msg } = useSectionContent('offers')
@@ -30,9 +37,16 @@ export default function OffersEditor() {
             <div className="admin-array">
               {items.map((item, i) => (
                 <ArrayItem key={i} label={`Seçenek ${i + 1}`} onRemove={items.length > 1 ? () => set('items', removeAt(items, i)) : undefined}>
-                  <Field label="Başlık">
-                    <input className="admin-input" value={item.title ?? ''} onChange={e => setItem(i, { title: e.target.value })} />
-                  </Field>
+                  <div className="admin-row">
+                    <Field label="Başlık">
+                      <input className="admin-input" value={item.title ?? ''} onChange={e => setItem(i, { title: e.target.value })} />
+                    </Field>
+                    <Field label="İkon" hint="Başlığın üstünde gösterilir. Seçeneklerde aynı ikonu tekrar kullanma.">
+                      <select className="admin-input" value={item.icon ?? ''} onChange={e => setItem(i, { icon: e.target.value })}>
+                        {ICON_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                      </select>
+                    </Field>
+                  </div>
                   <Field label="Açıklama">
                     <textarea className="admin-textarea" value={item.description ?? ''} onChange={e => setItem(i, { description: e.target.value })} rows={3} />
                   </Field>
@@ -43,7 +57,7 @@ export default function OffersEditor() {
                     <input className="admin-input" value={item.topic ?? ''} onChange={e => setItem(i, { topic: e.target.value })} />
                   </Field>
                   <div className="admin-row">
-                    <Field label="Buton Metni" hint="Boş bırakılırsa link gösterilmez.">
+                    <Field label="Buton Metni" hint="Tıklayınca ne olacağını söyle: “Eğitim isteyin” gibi; “Keşfet” gibi belirsiz ifadeler kullanma. Boş bırakılırsa link gösterilmez.">
                       <input className="admin-input" value={item.cta?.text ?? ''} onChange={e => setCta(i, 'text', e.target.value)} />
                     </Field>
                     <Field label="Buton Linki">

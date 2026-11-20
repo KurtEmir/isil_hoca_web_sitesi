@@ -60,11 +60,7 @@ export default async function Hero() {
             </p>
           </div>
 
-          {hero.quote && (
-            <blockquote className="hero__quote">
-              <p>&ldquo;{hero.quote}&rdquo;</p>
-            </blockquote>
-          )}
+          {hero.lead && <p className="hero__lead">{hero.lead}</p>}
 
           <div className="hero__side">
             <div className="hero__byline">
@@ -82,8 +78,8 @@ export default async function Hero() {
               <div className="hero__act">
                 {ctas.map((c, i) => (
                   c.variant === 'secondary'
-                    ? <a key={i} className="link" href={c.href}>{c.text}</a>
-                    : <a key={i} className="btn btn--light" href={c.href}>{c.text}<ArrowIcon /></a>
+                    ? <a key={i} className="link" href={c.href} data-topic={c.topic || undefined}>{c.text}</a>
+                    : <a key={i} className="btn btn--light" href={c.href} data-topic={c.topic || undefined}>{c.text}<ArrowIcon /></a>
                 ))}
               </div>
             )}

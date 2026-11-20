@@ -1,5 +1,6 @@
 import { getContent } from '@/lib/content'
 import ArrowIcon from '@/components/ArrowIcon'
+import Icon from '@/components/Icon'
 
 export default async function Offers() {
   const offers = await getContent('offers')
@@ -18,6 +19,7 @@ export default async function Offers() {
             const cta = item.cta ?? {}
             return (
               <li key={i} className="offers__item">
+                <Icon name={item.icon} className="offers__icon" />
                 <h3 className="offers__title">{item.title}</h3>
                 {item.description && <p className="offers__desc">{item.description}</p>}
                 {item.audience && <p className="offers__audience">{item.audience}</p>}

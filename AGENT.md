@@ -17,8 +17,8 @@ Tasarım 2026-11-12'de ikinci kez, **Impeccable** (pbakaus/impeccable) skill'ini
 - **TEZ:** Slogan sitenin kendisidir. "Öğretmen Gelişir, Toplum Değişir" tipografiyle anlatılır: *Öğretmen* ince (300), *Gelişir,* harf harf inceden kalına büyür, *Toplum Değişir.* en kalın (800). Reddedilen kalıp: başlık + foto bölünmüş hero, renkli zeminli istatistik kartları/bandı, kart ızgarası, başlık üstü etiketler. Hero'nun en altındaki 4 rakamlık satır bilinçli olarak tutulur. 2026-11-17'de kullanıcı hero'daki kırmızıyı yorucu buldu; rakamlar kırmızı alanın altındaki kâğıt şeride (`.hero__ground`) taşındı, figür bu sınırın üstünde durur. Rakamlar kırmızı, ince dikey çizgilerle ayrılır, kart değildir; rakamlar sayfadaki diğer verilerle (platform kartları vb.) birebir tutarlı olmalı.
 - **DÜNYA:** TeacherX kırmızısı yalnızca üç büyük alanın sahibidir: hero, Human+ bandı ve kapanış (iletişim + footer). 2026-11-15'te kullanıcı "çok kırmızı, göz yoruyor" dedi; yeni renk eklenmedi, kırmızının alanı daraltıldı (~%32 → ~%23): menü çubuğu kâğıt zemin + mürekkep yazı ve kırmızı CTA oldu, manifesto siyaha geçti. Yeni bir kırmızı alan eklemeden önce sor. Ara bölümler beyaz kâğıt üzerinde katı 12 sütunlu ızgara ve kalın siyah çizgilerle kurulur. Üç siyah alan (platformlar, medya, manifesto) ritmi kırar; iki siyah bölüm asla art arda gelmez. Hero'da Işıl Hoca büyük ve tam renklidir; Human+ bandında iş ortamından tam renkli 1–3 fotoğraf (sahne, röportaj, salon) yer alır. 2026-11-17'de duotone portre kullanıcı isteğiyle kaldırıldı.
 - **HİKÂYE:** Ziyaretçi önce yüzü ve sloganı görür, alıntıyla düşünceyi okur, rakamlarla kanıtı görür; ardından yolculuk (zaman çizelgesi), Human+ yaklaşımı, uzmanlık, platform ekosistemi, davet seçenekleri, kurumlar, medya, yazılar ve manifestodan geçip kırmızı kapanışta formu doldurur.
-- **İLK EKRAN:** Kırmızı zemin. Solda (7 sütun) slogan sütun genişliğine göre ölçeklenir (`15.6cqi`), altında alıntı, imza ve "Konuşmacı Daveti" (beyaz buton). Sağda arka planı silinmiş büyük renkli figür alt kenara oturur ve rakam satırının ince beyaz çizgisinin üstünde durur. En altta 4 rakam. Sayfanın `h1`'i Işıl Hoca'nın adıdır (imza satırı); slogan görsel olarak afiştir ama `p` olarak işaretlenir. Mobilde sıra: slogan → isim ve ünvan → buton → fotoğraf → alıntı → rakamlar; ilk ekranda kim olduğu okunur.
-- **İMZA ETKİLEŞİM:** "Gelişir" fikri hareket diline dönüşür. Hero'da büyüyen kelime yüklemede canlanır; uzmanlık başlıkları kaydırdıkça 300'den 700'e kalınlaşır (CSS scroll-driven animation); link ve menü hover'ında yazı kalınlaşır. Host Grotesk *uniwidth* olduğu için ağırlık değişirken satır kaymaz.
+- **İLK EKRAN:** Kırmızı zemin. Solda (7 sütun) slogan sütun genişliğine göre ölçeklenir (`15.6cqi`), altında tanıtım cümlesi (`hero.lead`), imza ve "Konuşmacı olarak davet edin" (beyaz buton). Slogan vizyonu söyler; tanıtım cümlesi ne yaptığını, kimin için yaptığını somut söyler (kurduğu kurumlar, kime ne verdiği). "Geleceği şekillendiriyoruz" gibi her işe uyan cümle yazılmaz. 2026-11-20'de alıntı hero'dan Human+ bandına taşındı. Sağda arka planı silinmiş büyük renkli figür alt kenara oturur ve rakam satırının ince beyaz çizgisinin üstünde durur. En altta 4 rakam. Sayfanın `h1`'i Işıl Hoca'nın adıdır (imza satırı); slogan görsel olarak afiştir ama `p` olarak işaretlenir. Mobilde sıra: slogan → tanıtım cümlesi → isim ve ünvan → butonlar → fotoğraf → rakamlar; ilk ekranda kim olduğu ve ne yaptığı okunur.
+- **İMZA ETKİLEŞİM:** "Gelişir" fikri hareket diline dönüşür. Hero'da büyüyen kelime yüklemede canlanır; uzmanlık listesinde ekranın ortasına gelen konu 300'den 800'e kalınlaşır; Human+ denklemi kaydırınca birleşir; link ve menü hover'ında yazı kalınlaşır. Host Grotesk *uniwidth* olduğu için ağırlık değişirken satır kaymaz.
 
 ---
 
@@ -29,7 +29,17 @@ Tasarım 2026-11-12'de ikinci kez, **Impeccable** (pbakaus/impeccable) skill'ini
 - Referans siteler (reshmasaujani.com, bernardmarr.com, sigrun.com) yalnızca kategori bilgisidir; görünüm onlardan alınmadı.
 
 ### Sayfa Ritmi
-hero (kırmızı, büyük renkli figür; altında kâğıt zeminde rakamlar) → hakkımda (beyaz) → yolculuk (beyaz, hat haritası + yıl yıl liste) → Human+ bandı (kırmızı, iş fotoğrafları + özet + denklem) → uzmanlık (beyaz) → platformlar (siyah, ekosistem şeması + kartlar) → davet seçenekleri (beyaz) → kurumlar (beyaz) → medya (siyah) → görüşler (beyaz) → manifesto (siyah) → iletişim + footer (kırmızı, kesintisiz kapanış)
+hero (kırmızı, büyük renkli figür; altında kâğıt zeminde rakamlar) → hakkımda (beyaz) → yolculuk (beyaz, dikey zaman çizgisi) → Human+ bandı (kırmızı, iş fotoğrafları + özet + denklem) → uzmanlık (beyaz) → platformlar (siyah, ekosistem şeması + kartlar) → davet seçenekleri (beyaz) → kurumlar (beyaz) → medya (siyah) → görüşler (beyaz) → manifesto (siyah) → iletişim + footer (kırmızı, kesintisiz kapanış)
+
+### 2026-11-20: "7 tasarım kaynağı" uygulaması
+Doruk Yalçınsoy'un "Web Siteni Daha İyi Gösterecek 7 Tasarım Kaynağı" yazısındaki ihtiyaçlar (ScrollTide, Navbar Gallery, Footer Design, CTA Gallery, Refero Styles, Supahero, 3dicons) yön sözleşmesi bozulmadan uygulandı. Referanslardan görünüm kopyalanmadı, yalnızca ilkeler alındı:
+- **Hareket:** yeni hareket yalnızca anlatıyorsa eklenir. Human+ denklemi kaydırınca birleşir ve sonuç kutusu dolar; kavramı anlatır, içeriği gizlemez.
+- **Menü:** 4 link + tek ana buton. Ana butonla aynı yere giden ikinci bir link ("İletişim") yok.
+- **Footer:** ne yaptığını anlatan tek cümle, e-posta, menü, platform linkleri, sosyal medya ve "Başa dön". Boş sütun yok.
+- **CTA:** etiket tıklayınca ne olacağını söyler ("Danışmanlık için yazın", "Keşfet" değil). Forma giden her buton `topic` ile Konu'yu doldurur. Var olmayan koşul (süre, ücret, dönüş süresi) yazılmaz.
+- **Görsel sistem:** bu dosya projenin DESIGN.md'sidir. Buton/kontrol ölçüleri de token'dır (`--control-h`, `--underline`…).
+- **Hero:** slogan + somut tanıtım cümlesi (yukarıda).
+- **İkon:** yalnızca `components/Icon.jsx` ailesi (32'lik ızgara, 1.6 çizgi, yuvarlak uç; `ArrowIcon` ile aynı dil). Somut nesne (mikrofon, tahta, pusula), öğe başına en fazla bir ikon, kırmızı çizgi, dolgu yok. Şu an yalnızca Davet Seçenekleri'nde. 3D ikon kullanılmaz; düz tipografik afiş diliyle çatışır.
 
 ### Token Kuralı
 Aşağıdaki değerler `styles/tokens.css` ile birebir aynıdır; o dosya tek doğruluk kaynağıdır. Yeni değer gerekiyorsa önce `tokens.css`'e ekle, sonra buraya yansıt. `styles/main.css` içinde ham renk, boşluk veya süre değeri yazma.
@@ -100,7 +110,7 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 --text-h2:      clamp(2.5rem,   1.4rem + 4.4vw,   5.25rem);  /* bölüm başlıkları */
 --text-closing: clamp(3.25rem,  1.2rem + 8.4vw,   8.75rem);  /* "Birlikte Çalışalım." */
 --text-fact:    clamp(2.25rem,  1.6rem + 2.4vw,   4rem);     /* hero rakamları (kâğıt şerit) */
---text-xs:      0.8125rem;                                     /* hat haritası durak adları */
+--text-xs:      0.8125rem;                                     /* küçük yardımcı metin */
 --text-statement: clamp(2rem, 1.15rem + 3.6vw, 4.5rem);      /* manifesto cümleleri */
 
 --poster-size:        15.6cqi; /* hero sloganı, masaüstü (7 sütunluk metin kolonuna göre) */
@@ -146,6 +156,18 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 --rule-bold:   3px;
 ```
 
+### Kontroller
+```css
+--control-h:        54px;    /* buton, denklem kutusu */
+--control-h-sm:     44px;    /* küçük buton, menü butonu, en küçük dokunma hedefi */
+--underline:        2px;     /* link alt çizgisi */
+--underline-offset: 0.26em;
+--tracking-button:  -0.005em;
+--icon-size:        40px;    /* Davet Seçenekleri ikonları */
+--icon-stroke:      1.6;
+--eq-shift:         var(--sp-16); /* denklem birleşme mesafesi */
+```
+
 ### Boşluk
 4px tabanlı: `--sp-1: 4px` … `--sp-24: 96px`.
 `--section-pad-v: clamp(80px, 9vw, 136px)`, `--content-pad-h: clamp(20px, 5vw, 64px)`.
@@ -156,14 +178,17 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 
 - **Buton:** köşeli dikdörtgen, 54px (`--btn--sm` 44px). Beyaz zeminde kırmızı (`.btn`), kırmızı zeminde beyaz (`.btn--light`). Hover'da mürekkep siyahı. Pill buton yok.
 - **Link:** 2px alt çizgi; hover'da ağırlık 500 → 800 (kayma olmaz).
-- **Menü:** kâğıt zeminli çubuk, mürekkep yazı, kırmızı "Konuşmacı Daveti" butonu; scroll sonrası altta `--color-rule` çizgisi. Mobil menü açılınca çubuk ve çekmece birlikte kırmızıya döner. 1024px ve altında linkler ve menü butonu yerine hamburger gelir (tablet dikeyde menü taşmasın diye). Çekmece tam ekran kırmızı, `aria-modal`; linkler hover/focus'ta kalınlaşır, bir linke basınca odak hedef bölüme taşınır.
+- **Menü:** kâğıt zeminli çubuk; 4 link (Hakkımda, Platformlar, Konuşma & Eğitim, Medya; `content/navigation.js`), mürekkep yazı, kırmızı "Konuşmacı Daveti" butonu (`site.navCta`, `topic` ile formdaki Konu'yu doldurur); scroll sonrası altta `--color-rule` çizgisi. Mobil menü açılınca çubuk ve çekmece birlikte kırmızıya döner. 1024px ve altında linkler ve menü butonu yerine hamburger gelir (tablet dikeyde menü taşmasın diye). Çekmece tam ekran kırmızı, `aria-modal`; linkler hover/focus'ta kalınlaşır, bir linke basınca odak hedef bölüme taşınır.
 - **Form (kırmızı zeminde):** etiket üstte, input'lar şeffaf, alt çizgi `--color-on-red-muted`; odakta çizgi beyazlaşır ve zemin `--color-red-deep` olur; zemin ve çizgi `box-shadow` ile iki yana `--sp-3` genişler, metin yerinden kaymaz. Yazılan metin 500, placeholder 300 ağırlıkta (ayrım renkle değil ağırlıkla, kontrast tabanı korunur). Konu bir seçim kutusudur (`contact.subjects`); Davet Seçenekleri'ndeki linkler `data-topic` ile Konu'yu doldurur. Zorunlu olmayan alan "(isteğe bağlı)" diye işaretlenir. Doğrulama tarayıcıya bırakılmaz: hatalı alan kesikli beyaz çizgi alır ve altında `contact.fieldErrors`'tan Türkçe mesaj çıkar; sunucu da aynı kuralı (`lib/contactValidation.js`) uygular.
 - **Medya rozeti:** videonun sol üst köşesinde kırmızı etiket (`media.featuredBadge`). Oynat ikonu kırmızı kare.
 - **Hero figürü:** `hero.photo` arka planı silinmiş (şeffaf) bir fotoğraf olmalı; `object-fit: contain` ile sağ alta oturur. ≤768px'de sıra: slogan → CTA → kare kırpılmış figür (baş-omuz) → alıntı → imza.
-- **Human+ bandı (`Spotlight`):** kırmızı alanda üstte fotoğraf galerisi (`spotlight.photos`, en fazla 3: ilki 7 sütun 4:3, diğer ikisi sağda üst üste; tam renk, köşesiz, hover'da hafif yakınlaşma, altında küçük alt yazı; `position` kırpma odağı). Altında solda dev kelime (`spotlight.backdrop`) + kısa açıklama, sağda 2–3 cümlelik özet (`spotlight.summary`) ve denklem şeması: terimler kutu içinde, `+` ve `=` ile bağlanır, son terim beyaz dolgulu sonuçtur. Mobilde ilk fotoğraf tam genişlik, diğer ikisi yan yana.
-- **Yolculuk:** üstte giriş cümlesi (`journey.intro`), ortada veriden çizilen **hat haritası** (metro haritası): yıllar sütun, `journey.tracks` satır. Hat 1 mürekkep, hat 2 kırmızı, hat 3 çift çizgi (ray). Duraklar kare; aynı yıl+hatta birden çok olay varsa kare dolar ve sayıyı gösterir. Hatlar kaydırınca soldan sağa çizilir (`animation-timeline: view()`). Harita `aria-hidden`; asıl içerik altındaki yıl yıl listedir (yıl solda kırmızı ve yapışkan, başlık + hat etiketi, sağda açıklama). ≤768px'de harita yatay kayar, hat adları solda sabit kalır.
+- **Hakkımda:** büyük giriş paragrafı + diğer paragraflar, ardından roller tablosu. (Misyon & Vizyon satırları 2026-11-20'de kullanıcı isteğiyle kaldırıldı.)
+- **Footer:** kırmızı kapanışın devamı. Solda isim, tek cümle (`site.footerStatement`) ve e-posta; sağda Menü, Platformlar (Platformlar bölümünden linki olan kartlar) ve Sosyal Medya sütunları; altta telif ve "Başa dön".
+- **Human+ bandı (`Spotlight`):** kırmızı alanda önce **kaydırma hikâyesi** (`SpotlightStory`, client): ekran menünün altında sabitlenir, ziyaretçi kaydırdıkça `spotlight.photos` (en fazla 3) sırayla gelir. Solda 8 sütun 4:3 fotoğraf; yeni fotoğraf alttan yukarı açılır (`clip-path`) ve hafif yakınlaşmadan oturur. Sağda üstte foto sayısı kadar ilerleme çubuğu (kaydırmayla dolar), altında başlık (`caption`, `--text-feature` 700) ve açıklama (`text`, `--text-lead`); metin aşağıdan yükselerek değişir. Her fotoğraf `--story-step` (70svh) kaydırma alır; son fotoğraftan sonra sayfa normal akar. ≤1024px'de fotoğraf üstte, metin altta. Ardından solda dev kelime (`spotlight.backdrop`) + Işıl Hoca'nın alıntısı (`spotlight.caption`, tırnaklar metnin içinde, kenara asılı), sağda 2–3 cümlelik özet (`spotlight.summary`) ve denklem şeması: terimler kutu içinde, `+` ve `=` ile bağlanır, son terim beyaz dolgulu sonuçtur. Kaydırınca (`view-timeline: --equation`) terimler sağdan sola birleşir, sonra sonuç kutusu ince çerçeveden beyaz dolguya geçer; desteklemeyen tarayıcıda ve `prefers-reduced-motion`'da son hâl görünür.
+- **Odaklandığım Konular (`TopicIndex`, client):** solda (4 sütun) yapışkan panel: büyük kırmızı sıra (`03 / 06`, aktif konunun yerini gösterir, süs değil), aktif konunun açıklaması (geçişli) ve kırmızı ilerleme çizgisi. Sağda (6–12) dev konu listesi: konular ince (300) ve gri; ekranın ortasına gelen (veya üstüne gelinen) konu 800'e kalınlaşır, mürekkebe döner, hafif sağa kayar ve üstünde kırmızı çizgi soldan sağa dolar. Açıklamalar her satırda DOM'da (ekran okuyucu için); masaüstünde görsel olarak gizli, ≤1024px'de panel kalkar ve açıklamalar başlığın altında hep görünür (açılıp kapanmaz, sayfa zıplamasın).
+- **Yolculuk:** üstte giriş cümlesi (`journey.intro`), altında tek bir **dikey zaman çizgisi**. Solda (2 sütun) yıl: kırmızı, ince (300), `--text-feature`; yapışkan değil (yapışkan yıllar üst üste biniyordu). Sağda 1px `--color-rule` dikey çizgi; her yılın hizasında çizginin üstünde küçük kırmızı kare (`--timeline-node`), ilk başlık satırına ortalı. Olaylar çizginin sağında: solda başlık (`--text-lead`, 600) + altında gri kategori (`items[].track`, renk kodu yok), sağda açıklama. ≤768px'de yıl üstte, olaylar tek sütun. 2026-11-20'de üç hatlı metro haritası "göz yoruyor, karmaşık" geri bildirimiyle kaldırıldı: aynı bilgiyi iki kez veriyordu ve üç çizgi stili, sayılı kutular, minik etiketler gürültü yapıyordu. Hat/renk kodlu şema geri eklenmez.
 - **Platformlar:** önce ekosistem döngü şeması (`EcosystemDiagram`, veriden çizilen SVG; ilk platform kırmızı çekirdek, oklar saat yönünde, ortada `platforms.center`), yanında `platforms.intro`. Altında 2×2 platform kartı: üstte 3px kırmızı çizgi, 16:10 görsel (hover'da hafif yakınlaşır), görsel yoksa kırmızı zeminde dev isim; isim, rol, açıklama, rakamlar, link. Kart yapısı kullanıcı isteğiyle yalnızca bu bölümde kullanılır.
-- **Davet seçenekleri:** 3 sütunlu tablo, sütunlar ince dikey çizgilerle ayrılır; her sütunda başlık → açıklama → kitle (kırmızı) → link.
+- **Davet seçenekleri:** 3 sütunlu tablo, sütunlar ince dikey çizgilerle ayrılır; her sütunda ikon (`offers.items[].icon`: `mic`, `board`, `compass`) → başlık → açıklama → kitle (kırmızı) → link.
 - **Manifesto:** siyah alanda (yazıların ardından, kırmızı kapanıştan hemen önce) büyük cümleler (`--text-statement`, 800) solda, kısa açıklama sağda, alt hizalı.
 
 ---
@@ -177,7 +202,8 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 --delay-grow: 250ms;  --step-grow: 75ms;
 ```
 - Tek imza an: hero'da "Gelişir," harfleri sırayla 300'den hedef ağırlığa büyür (`.grow__letter`, `--w` ve `--i` inline gelir).
-- Uzmanlık başlıkları `animation-timeline: view()` ile kaydırmaya bağlı kalınlaşır. Desteklemeyen tarayıcıda sabit 600 kalır.
+- Uzmanlık listesi ve Human+ fotoğrafları kaydırma konumuna göre JS ile durum değiştirir (IntersectionObserver / rAF); geçişler CSS `transition`.
+- Kaydırmaya bağlı hareket üç yerde: Human+ kaydırma hikâyesi (sabitlenen tek bölüm), Human+ denklemi, uzmanlık listesi. Sayfada başka sabitlenen (pin) bölüm eklenmez; yenisini eklemeden önce sor.
 - Hover'da kalınlaşma: `--dur-slow` + `--ease-out-expo`.
 - Sayfa genelinde fade-in / reveal yok; içerik her zaman görünür başlar.
 - `prefers-reduced-motion`: animasyonlar kapanır, son hâl (ağırlık rampası) statik görünür.
@@ -189,7 +215,7 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 - Max genişlik `--max-width: 1280px`, menü yüksekliği `--nav-height: 72px`.
 - Hero: `.hero__poster` bir container'dır (`container-type: inline-size`). Slogan ve portre `cqi` ile ölçeklenir, böylece kompozisyon her masaüstü genişliğinde aynı orantıda kalır. ≤768px'de portre sloganın altına iner (%34 genişlik), slogan `21cqi` olur.
 - Kırılımlar: 1024px, 768px, 480px (`main.css` sonunda).
-- Human+ galerisi için en az 1600px genişliğinde yatay fotoğraf önerilir.
+- Human+ kaydırma hikâyesi için en az 1600px genişliğinde yatay fotoğraf önerilir.
 
 ---
 
@@ -210,9 +236,9 @@ Refleks fontları kullanma (Inter, Bricolage Grotesque, Instrument Serif, Fraunc
 ## Kaçınılacak Anti-Pattern'ler (Impeccable craft-floor)
 
 - [ ] Başlık üstü eyebrow / kicker etiketi (yasak)
-- [ ] Anlamsız bölüm numaraları (01 / 02 / 03)
+- [ ] Anlamsız bölüm numaraları (01 / 02 / 03); konular panelindeki `03 / 06` sıra göstergesidir, bölüm numarası değil
 - [ ] Hero-metric şablonu (dev rakam bandı)
-- [ ] İkonlu eşit kart ızgarası, iç içe kartlar
+- [ ] İkonlu eşit kart ızgarası, iç içe kartlar (Davet Seçenekleri'ndeki ikonlar kart değil, çizgili tablonun sütun başıdır)
 - [ ] Pill butonlar, gradient, glass/blur, gölge
 - [ ] Krem zemin + serif + kırmızı vurgu (AI kümelenmesi #1)
 - [ ] Monospace etiket kostümü

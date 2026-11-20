@@ -78,7 +78,7 @@ export default function Nav({ site }) {
 
           <div className="nav__actions">
             {hasCta && (
-              <a className="btn btn--sm nav__cta" href={cta.href}>{cta.text}</a>
+              <a className="btn btn--sm nav__cta" href={cta.href} data-topic={cta.topic || undefined}>{cta.text}</a>
             )}
 
             <button
@@ -122,6 +122,7 @@ export default function Nav({ site }) {
           <a
             className="btn btn--light nav__drawer-cta"
             href={cta.href}
+            data-topic={cta.topic || undefined}
             onClick={followLink}
             tabIndex={menuOpen ? 0 : -1}
           >

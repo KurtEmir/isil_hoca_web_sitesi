@@ -24,10 +24,10 @@ export default function SiteEditor() {
             <Field label="İsim" hint="Menü, alt bilgi ve sayfa başlığında kullanılır.">
               <input className="admin-input" value={data.name ?? ''} onChange={e => set('name', e.target.value)} />
             </Field>
-            <Field label="Slogan" hint="Alt bilgide isim altında gösterilir.">
+            <Field label="Slogan" hint="Alt bilgi cümlesi boşsa onun yerine gösterilir.">
               <input className="admin-input" value={data.tagline ?? ''} onChange={e => set('tagline', e.target.value)} />
             </Field>
-            <Field label="Kısa Tanım" hint="Sayfa başlığında, paylaşım önizlemelerinde ve alt bilgide kullanılır.">
+            <Field label="Kısa Tanım" hint="Sayfa başlığında ve paylaşım önizlemelerinde kullanılır.">
               <input className="admin-input" value={data.description ?? ''} onChange={e => set('description', e.target.value)} />
             </Field>
           </Section>
@@ -41,17 +41,26 @@ export default function SiteEditor() {
                 <input className="admin-input" value={navCta.href ?? ''} onChange={e => setNavCta('href', e.target.value)} placeholder="#contact" />
               </Field>
             </div>
+            <Field label="Form Konusu" hint="Butona basınca iletişim formundaki Konu bununla dolar. İletişim bölümündeki konu seçeneklerinden biriyle birebir aynı yaz; boş bırakılabilir.">
+              <input className="admin-input" value={navCta.topic ?? ''} onChange={e => setNavCta('topic', e.target.value)} placeholder="Konuşmacı daveti" />
+            </Field>
           </Section>
 
           <Section title="Alt Bilgi">
+            <Field label="Alt Bilgi Cümlesi" hint="İsmin altında gösterilir. Tek cümleyle ne yaptığını anlat.">
+              <textarea className="admin-textarea" value={data.footerStatement ?? ''} onChange={e => set('footerStatement', e.target.value)} rows={2} />
+            </Field>
             <div className="admin-row">
               <Field label="Menü Sütunu Başlığı">
                 <input className="admin-input" value={data.footerMenuLabel ?? ''} onChange={e => set('footerMenuLabel', e.target.value)} />
               </Field>
-              <Field label="Sosyal Medya Sütunu Başlığı">
-                <input className="admin-input" value={data.footerSocialLabel ?? ''} onChange={e => set('footerSocialLabel', e.target.value)} />
+              <Field label="Platformlar Sütunu Başlığı" hint="Linkler Platformlar bölümündeki kartlardan gelir.">
+                <input className="admin-input" value={data.footerPlatformsLabel ?? ''} onChange={e => set('footerPlatformsLabel', e.target.value)} />
               </Field>
             </div>
+            <Field label="Sosyal Medya Sütunu Başlığı">
+              <input className="admin-input" value={data.footerSocialLabel ?? ''} onChange={e => set('footerSocialLabel', e.target.value)} style={{ maxWidth: 320 }} />
+            </Field>
             <Field label="Alt Bilgi Notu" hint="Telif satırının sonunda gösterilir. Boş bırakılabilir.">
               <input className="admin-input" value={data.footerNote ?? ''} onChange={e => set('footerNote', e.target.value)} style={{ maxWidth: 240 }} />
             </Field>

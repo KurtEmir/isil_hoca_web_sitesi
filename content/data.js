@@ -5,8 +5,10 @@ export const site = {
   description: "Eğitim Teknolojileri Uzmanı, Girişimci & Akademisyen",
   url: "https://teacherx.online",
   footerNote: "TeacherX",
-  navCta: { text: "Konuşmacı Daveti", href: "#contact" },
+  footerStatement: "Öğretmenleri yapay zeka çağına hazırlayan platformlar kuruyor; okullara ve kurumlara eğitim, danışmanlık ve konuşmalarla eşlik ediyorum.",
+  navCta: { text: "Konuşmacı Daveti", href: "#contact", topic: "Konuşmacı daveti" },
   footerMenuLabel: "Menü",
+  footerPlatformsLabel: "Platformlar",
   footerSocialLabel: "Sosyal Medya",
   social: {
     linkedin:  { url: "https://linkedin.com/in/isilboyergul", label: "LinkedIn" },
@@ -20,10 +22,10 @@ export const hero = {
   name: "Dr. Işıl Boy Ergül",
   tagline: "Öğretmen\nGelişir,\nToplum Değişir.",
   taglineHighlight: "Gelişir,",
-  quote: "Yapay zeka eğitimde bir araç değil, yeni bir boyuttur. Bu boyutta eğitimin kalbi yine öğretmendir.",
+  lead: "TeacherX'in ve Eğitim Teknolojileri Zirvesi'nin kurucusuyum. Okullara, kurumlara ve zirvelere yapay zeka çağında öğretmenlik üzerine konuşma, eğitim ve danışmanlık veriyorum.",
   cta: [
-    { text: "Konuşmacı Daveti", href: "#contact", variant: "primary" },
-    { text: "Hakkımda",         href: "#about",   variant: "secondary" }
+    { text: "Konuşmacı olarak davet edin",  href: "#contact", variant: "primary",   topic: "Konuşmacı daveti" },
+    { text: "Davet seçeneklerini görün",    href: "#offers",  variant: "secondary", topic: "" }
   ],
   photo: {
     src: "/images/isil-boy-ergul-dekupe.webp",
@@ -84,7 +86,7 @@ export const about = {
 
 export const journey = {
   title: "Yolculuğum",
-  intro: "Bir üniversite kampüsünde başlayan zirve; bir girişime, uluslararası sahnelere ve 50 binden fazla öğretmene uzandı. Üç hat, tek bir fikir: öğretmen gelişir, toplum değişir.",
+  intro: "Bir üniversite kampüsünde başlayan zirve; bir girişime, uluslararası sahnelere ve 50 binden fazla öğretmene uzandı. Hepsinin arkasında tek bir fikir var: öğretmen gelişir, toplum değişir.",
   tracks: ["Zirve", "Girişim", "Uluslararası"],
   items: [
     { year: "2014", track: "Zirve",        title: "Eğitim Teknolojileri Zirvesi başladı", text: "31 Mayıs'ta Yıldız Teknik Üniversitesi Davutpaşa Kampüsü'nde Türkiye'nin ilk eğitim teknolojileri zirvesi düzenlendi." },
@@ -107,12 +109,12 @@ export const journey = {
 
 export const spotlight = {
   photos: [
-    { src: "/images/spotlight/etz-sahne.webp",         alt: "Dr. Işıl Boy Ergül, Eğitim Teknolojileri Zirvesi sahnesinde konuşurken", caption: "Eğitim Teknolojileri Zirvesi sahnesinde", position: "62% 30%" },
-    { src: "/images/spotlight/etz25-roportaj.webp",    alt: "Dr. Işıl Boy Ergül, ETZ25'te mikrofon uzatılmış bir röportajda",       caption: "ETZ25 · Dijital Uyanış röportajı",       position: "70% 35%" },
-    { src: "/images/spotlight/etz-konusma-salon.webp", alt: "Dolu bir salonda sahnede konuşan Dr. Işıl Boy Ergül",                  caption: "“Gelecek Nesil Öğretmenler” konuşması",  position: "55% 60%" }
+    { src: "/images/spotlight/etz-sahne.webp",         alt: "Dr. Işıl Boy Ergül, Eğitim Teknolojileri Zirvesi sahnesinde konuşurken", caption: "Eğitim Teknolojileri Zirvesi sahnesinde", text: "2014'te Yıldız Teknik Üniversitesi'nde başlayan zirve, her yıl eğitim ve teknolojinin önde gelen isimlerini aynı sahnede buluşturuyor.", position: "62% 30%" },
+    { src: "/images/spotlight/etz25-roportaj.webp",    alt: "Dr. Işıl Boy Ergül, ETZ25'te mikrofon uzatılmış bir röportajda",       caption: "ETZ25 · Dijital Uyanış röportajı",       text: "12. zirve “Yapay Zeka Çağında Eğitim” temasıyla 2.000'i aşkın katılımcıyı ve 60'tan fazla oturumu buluşturdu.", position: "70% 35%" },
+    { src: "/images/spotlight/etz-konusma-salon.webp", alt: "Dolu bir salonda sahnede konuşan Dr. Işıl Boy Ergül",                  caption: "“Gelecek Nesil Öğretmenler” konuşması",  text: "Okullarda ve kurumlarda öğretmenlerle yapay zeka çağında öğretmenliği konuşuyor: yapay zeka öğretmenin yerini almaz, kapasitesini genişletir.", position: "55% 60%" }
   ],
   backdrop: "Human+",
-  caption: "İnsan ve yapay zekanın sinerjisi.",
+  caption: "“Yapay zeka eğitimde bir araç değil, yeni bir boyuttur. Bu boyutta eğitimin kalbi yine öğretmendir.”",
   summary: "2014'ten bu yana Eğitim Teknolojileri Zirvesi'ni yürütüyor; doktora tezine dayanarak kurduğu TeacherX ile 50 binden fazla öğretmene ulaştı. Okullara ve kurumlara yapay zeka okuryazarlığı ve dijital dönüşüm üzerine eğitim ve danışmanlık veriyor, uluslararası sahnelerde konuşuyor. Human+ yaklaşımında yapay zeka öğretmenin yerini almaz, kapasitesini genişletir.",
   captionSource: "Human+ yaklaşımı · Dr. Işıl Boy Ergül",
   equation: ["Öğretmen", "Yapay Zeka", "Human+"]
@@ -214,6 +216,7 @@ export const offers = {
       description: "Zirveler, kongreler ve kurumsal etkinlikler için yapay zeka çağında eğitimin geleceği ve öğretmenin rolü üzerine konuşmalar.",
       audience: "Zirveler · Kongreler · Kurumsal etkinlikler",
       topic: "Konuşmacı daveti",
+      icon: "mic",
       cta: { text: "Konuşmacı olarak davet edin", href: "#contact" }
     },
     {
@@ -221,14 +224,16 @@ export const offers = {
       description: "Okullar ve eğitim kurumları için yapay zeka okuryazarlığı, dijital yetkinlik ve Human+ yaklaşımı odaklı uygulamalı eğitimler.",
       audience: "Okullar · Öğretmen ekipleri",
       topic: "Öğretmen eğitimi veya atölye",
-      cta: { text: "Eğitim talep edin", href: "#contact" }
+      icon: "board",
+      cta: { text: "Okulunuz için eğitim isteyin", href: "#contact" }
     },
     {
       title: "Kurumsal Danışmanlık",
       description: "Eğitim kurumlarına dijital dönüşüm stratejisi, eğitim teknolojileri entegrasyonu ve uygulanabilir bir yol haritası.",
       audience: "Okul yönetimleri · Eğitim kurumları",
       topic: "Kurumsal danışmanlık",
-      cta: { text: "Görüşme planlayın", href: "#contact" }
+      icon: "compass",
+      cta: { text: "Danışmanlık için yazın", href: "#contact" }
     }
   ]
 };
@@ -326,7 +331,7 @@ export const insights = {
 
 export const contact = {
   title: "Birlikte\nÇalışalım.",
-  description: "Konuşmacılık davetleri, kurumsal iş birlikleri ve projeler için iletişime geçin.",
+  description: "Konuşmacı daveti, öğretmen eğitimi veya danışmanlık için formu doldurun. Mesajınız doğrudan Işıl Boy Ergül'e ulaşır, dönüş yazdığınız e-posta adresine yapılır.",
   email: "info@teacherx.online",
   socialLabel: "Sosyal Medya",
   formLabels: {
@@ -336,7 +341,7 @@ export const contact = {
     subject:      "Konu",
     message:      "Mesajınız",
     optional:     "isteğe bağlı",
-    submit:       "Mesaj Gönder",
+    submit:       "Mesajı Gönder",
     sending:      "Gönderiliyor…"
   },
   formHint: "Davetlerde etkinliğin tarihini, şehrini ve katılımcı kitlesini yazarsanız dönüş daha hızlı olur.",

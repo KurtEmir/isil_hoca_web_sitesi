@@ -15,7 +15,7 @@ export default function JourneyEditor() {
 
   return (
     <>
-      <EditorTopbar icon="⟶" title="Yolculuk (Hat Haritası)" previewHref="/#journey" />
+      <EditorTopbar icon="⟶" title="Yolculuk (Zaman Çizgisi)" previewHref="/#journey" />
 
       <div className="admin-content">
         <div className="admin-form">
@@ -28,20 +28,20 @@ export default function JourneyEditor() {
             </Field>
           </Section>
 
-          <Section title="Hatlar">
-            <p className="admin-field-hint">Haritadaki yatay hatlar. Sırayla siyah, kırmızı ve çift çizgili gösterilir; en fazla üç hat önerilir. Hat adını değiştirirsen duraklardaki hat seçimini de güncelle.</p>
+          <Section title="Kategoriler">
+            <p className="admin-field-hint">Olayların başlığının altında küçük gri etiket olarak yazar (örneğin Zirve, Girişim). Kategori adını değiştirirsen olaylardaki seçimi de güncelle.</p>
             <div className="admin-array">
               {tracks.map((track, i) => (
-                <ArrayItem key={i} label={`Hat ${i + 1}`} onRemove={() => set('tracks', removeAt(tracks, i))}>
+                <ArrayItem key={i} label={`Kategori ${i + 1}`} onRemove={() => set('tracks', removeAt(tracks, i))}>
                   <input className="admin-input" value={track} onChange={e => set('tracks', replaceAt(tracks, i, e.target.value))} />
                 </ArrayItem>
               ))}
-              <AddButton onClick={() => set('tracks', [...tracks, ''])}>Hat Ekle</AddButton>
+              <AddButton onClick={() => set('tracks', [...tracks, ''])}>Kategori Ekle</AddButton>
             </div>
           </Section>
 
           <Section title="Duraklar">
-            <p className="admin-field-hint">Eskiden yeniye sırala. Aynı yıldaki duraklar haritada aynı sütunda, listede aynı yılın altında toplanır.</p>
+            <p className="admin-field-hint">Eskiden yeniye sırala. Aynı yıldaki olaylar zaman çizgisinde aynı yılın altında toplanır.</p>
             <div className="admin-array">
               {items.map((item, i) => (
                 <ArrayItem key={i} label={`Durak ${i + 1}`} onRemove={() => set('items', removeAt(items, i))}>
@@ -49,14 +49,14 @@ export default function JourneyEditor() {
                     <Field label="Yıl">
                       <input className="admin-input" value={item.year ?? ''} onChange={e => set('items', updateAt(items, i, { year: e.target.value }))} placeholder="2020" />
                     </Field>
-                    <Field label="Hat">
+                    <Field label="Kategori">
                       <select className="admin-input" value={item.track ?? ''} onChange={e => set('items', updateAt(items, i, { track: e.target.value }))}>
-                        <option value="">Hatsız (yalnızca listede)</option>
+                        <option value="">Kategorisiz</option>
                         {tracks.filter(Boolean).map(track => <option key={track} value={track}>{track}</option>)}
                       </select>
                     </Field>
                   </div>
-                  <Field label="Başlık" hint="Haritada durağın altında da yazar; kısa tut.">
+                  <Field label="Başlık" hint="Kısa tut; ayrıntı açıklamaya.">
                     <input className="admin-input" value={item.title ?? ''} onChange={e => set('items', updateAt(items, i, { title: e.target.value }))} />
                   </Field>
                   <Field label="Açıklama">

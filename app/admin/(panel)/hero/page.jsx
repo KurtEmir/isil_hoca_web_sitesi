@@ -28,15 +28,15 @@ export default function HeroEditor() {
             </Field>
           </Section>
 
-          <Section title="Başlık ve Alıntı">
+          <Section title="Başlık ve Tanıtım">
             <Field label="Ana Başlık (Tagline)" hint="Kırmızı afişteki dev slogan. Satır başı için Enter'a bas; site aynı satır kırılımını gösterir. Büyüyen kısımdan öncesi ince, sonrası kalın yazılır.">
               <textarea className="admin-textarea" value={data.tagline ?? ''} onChange={e => set('tagline', e.target.value)} rows={3} />
             </Field>
             <Field label="Büyüyen Kısım" hint="Bu kısmın harfleri inceden kalına doğru büyür (gelişim animasyonu). Başlıkta birebir geçmeli; boş bırakılırsa başlığın tamamı kalın yazılır.">
               <input className="admin-input" value={data.taglineHighlight ?? ''} onChange={e => set('taglineHighlight', e.target.value)} />
             </Field>
-            <Field label="Alıntı / Quote" hint="Başlığın altında, fotoğrafın yanında gösterilir. Tırnak işaretleri otomatik eklenir.">
-              <textarea className="admin-textarea" value={data.quote ?? ''} onChange={e => set('quote', e.target.value)} rows={3} />
+            <Field label="Tanıtım Cümlesi" hint="Sloganın altında gösterilir. Ziyaretçi ilk ekranda ne yaptığını ve kimin için yaptığını buradan anlar; genel ifadeler yerine somut yaz (ne, kime, hangi kurumlarla).">
+              <textarea className="admin-textarea" value={data.lead ?? ''} onChange={e => set('lead', e.target.value)} rows={3} />
             </Field>
           </Section>
 
@@ -78,6 +78,9 @@ export default function HeroEditor() {
                     <input className="admin-input" value={c.href ?? ''} onChange={e => setCta(i, 'href', e.target.value)} placeholder="#contact" />
                   </Field>
                 </div>
+                <Field label="Form Konusu" hint="İletişim formuna giden butonlarda Konu'yu doldurur; konu seçeneklerinden biriyle birebir aynı yaz. Boş bırakılabilir.">
+                  <input className="admin-input" value={c.topic ?? ''} onChange={e => setCta(i, 'topic', e.target.value)} />
+                </Field>
               </ArrayItem>
             ))}
           </Section>

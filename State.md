@@ -1,12 +1,31 @@
 # State.md — Proje Durumu
 
-**Son güncelleme:** 2026-11-17
+**Son güncelleme:** 2026-11-20
 
 ---
 
 ## Mevcut Aşama
 
 Next.js 15 (App Router) + Supabase üzerinde çalışan tek sayfalık site ve admin paneli. Ana sayfa statik üretilip (ISR, 1 saat) admin kaydettiğinde anında yenileniyor. Admin panelinde 12 içerik bölümü (Site Ayarları, Hero, Hakkımda, Yolculuk, Human+ Bandı, Uzmanlık, Platformlar, Davet Seçenekleri, Medya, Manifesto, Görüşler, İletişim) ve gelen mesajlar ekranı var.
+
+### 2026-11-20: "7 tasarım kaynağı" uygulaması
+Doruk Yalçınsoy'un yazısındaki 7 ihtiyaç siteye uygulandı (ayrıntı AGENT.md'de):
+1. **Hareket (ScrollTide):** Human+ denklemi kaydırınca birleşiyor, sonuç kutusu doluyor (yalnızca CSS, `view-timeline`).
+2. **Menü (Navbar Gallery):** 6 linkten 4'e indi (Hakkımda, Platformlar, Konuşma & Eğitim, Medya); CTA ile çakışan "İletişim" kalktı. Menü butonu formda "Konuşmacı daveti"ni seçili getiriyor (`site.navCta.topic`).
+3. **Footer (Footer Design):** tek cümle (`site.footerStatement`), e-posta, Menü / Platformlar / Sosyal Medya sütunları, "Başa dön". `site.footerPlatformsLabel` yeni.
+4. **CTA (CTA Gallery):** hero butonu "Konuşmacı olarak davet edin" + "Davet seçeneklerini görün"; davet linkleri "Okulunuz için eğitim isteyin", "Danışmanlık için yazın" ("Görüşme planlayın" takvim çağrıştırıyordu). Hero butonlarına `topic` alanı eklendi. İletişim açıklaması formdan sonra ne olacağını söylüyor.
+5. **Görsel sistem (Refero):** AGENT.md DESIGN.md görevini görüyor; buton/link/ikon ölçüleri token'a çekildi (`--control-h`, `--control-h-sm`, `--underline`, `--underline-offset`, `--tracking-button`, `--icon-size`, `--icon-stroke`, `--eq-shift`).
+6. **Hero (Supahero):** alıntının yerine somut tanıtım cümlesi (`hero.lead`). Alıntı Human+ bandına (`spotlight.caption`) taşındı. `hero.quote` artık okunmuyor.
+7. **İkon (3dicons):** `components/Icon.jsx` (mikrofon, tahta, pusula), yalnızca Davet Seçenekleri'nde (`offers.items[].icon`, admin'de seçim kutusu). 3D ikon bilinçli olarak kullanılmadı.
+- **Misyon & Vizyon** eklendi, sonra kullanıcı isteğiyle aynı gün kaldırıldı (`about.statements` artık yok).
+- **Human+ kaydırma hikâyesi:** 3 fotoğraflı galeri yerine sabitlenen ekran; kaydırdıkça fotoğraf 1, 2, 3 açıklamalarıyla sırayla geliyor, sayfa o sırada aşağı akmıyor (`SpotlightStory.jsx`). Yeni alan: `spotlight.photos[].text` (admin → Human+ → Fotoğraflar → Açıklama); `caption` artık fotoğrafın başlığı. Supabase'de kayıtlı `spotlight` satırı varsa açıklamalar boş görünür, admin'den doldur.
+- **Odaklandığım Konular yeniden kurgulandı:** solda yapışkan panel (sıra, aktif konunun açıklaması, ilerleme çizgisi), sağda ortaya gelen konunun kalınlaştığı dev liste (`TopicIndex.jsx`). Eski scroll-driven `topicGrow` animasyonu kaldırıldı. Veri yapısı aynı.
+
+- **Yolculuğum sadeleştirildi:** üç hatlı metro haritası kaldırıldı (kullanıcı "göz yoruyor, karmaşık" dedi). Yerine tek dikey zaman çizgisi: solda yıl, ince çizgi üstünde kırmızı kare, sağda olaylar; kategori (Zirve/Girişim/Uluslararası) renk kodu olmadan gri etiket. Bölüm ~3100px'ten ~2450px'e indi. `journey.tracks` alanı kategori listesi olarak korunuyor (admin'de "Kategoriler"). Metro token'ları kaldırıldı, `--timeline-*` eklendi.
+
+**Işıl Hoca'ya doğrulatılacak:** Human+ fotoğraf açıklamaları, hero tanıtım cümlesi ve footer cümlesi mevcut site metinlerinden türetildi. İletişim açıklamasındaki "dönüş yazdığınız e-posta adresine yapılır" ifadesi de teyit edilmeli.
+
+**Supabase notu:** daha önce kaydedilmiş `hero`, `site`, `offers` ve `spotlight` satırları eski metinleri gösterir. Yeni üst düzey alanlar (`hero.lead`, `site.footerStatement`, `site.footerPlatformsLabel`) varsayılandan gelir. Ama DB'deki `hero.cta`, `site.navCta`, `offers.items` ve `spotlight.caption` eski hâliyle kalır (diziler/nesneler birleştirilmez). Yeni CTA metinleri, `topic` alanları ve ikonlar için admin'den ilgili bölümleri güncelleyip kaydet.
 
 ### 2026-11-17 revizyonları
 - **Hero rakamları:** kırmızının yorduğu geri bildirimi üzerine rakamlar kırmızı alanın altındaki kâğıt şeride taşındı (`.hero__ground`). Rakamlar kırmızı, görünce 0'dan sayıp 300'den 800'e kalınlaşıyor (`components/HeroFacts.jsx`, client). JS yoksa ve `prefers-reduced-motion` açıkken son değer statik görünür.

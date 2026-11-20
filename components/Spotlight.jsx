@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
-import Image from 'next/image'
 import { getContent } from '@/lib/content'
 import { resolveImage } from '@/lib/images'
+import SpotlightStory from '@/components/SpotlightStory'
 
 function collectPhotos(spotlight) {
   const list = (spotlight.photos ?? []).filter(p => p?.src)
@@ -25,26 +25,7 @@ export default async function Spotlight() {
       aria-labelledby={spotlight.backdrop ? 'spotlight-title' : undefined}
     >
       <div className="container">
-        {photos.length > 0 && (
-          <div className={`gallery gallery--${photos.length}`}>
-            {photos.map((photo, i) => (
-              <figure key={i} className="gallery__item">
-                <div className="gallery__frame">
-                  <Image
-                    src={photo.image.src}
-                    alt={photo.alt || ''}
-                    fill
-                    unoptimized={photo.image.remote}
-                    className="gallery__img"
-                    style={photo.position ? { objectPosition: photo.position } : undefined}
-                    sizes={i === 0 ? '(max-width: 768px) 100vw, 58vw' : '(max-width: 768px) 50vw, 40vw'}
-                  />
-                </div>
-                {photo.caption && <figcaption className="gallery__caption">{photo.caption}</figcaption>}
-              </figure>
-            ))}
-          </div>
-        )}
+        {photos.length > 0 && <SpotlightStory photos={photos} />}
 
         <div className="grid-12 spotlight__body">
           <div className="spotlight__lead">

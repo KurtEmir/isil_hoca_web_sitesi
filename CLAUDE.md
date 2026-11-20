@@ -56,13 +56,17 @@ isil_hoca_web_sitesi/
 ├── components/                 # Site bölümleri (server) + Nav/Contact (client)
 │   ├── Hero.jsx                # Kırmızı afiş: büyüyen slogan, figür, kâğıt şeritte rakamlar
 │   ├── HeroFacts.jsx           # Hero rakamları: görünce sayan, kalınlaşan sayaç (client)
-│   ├── Journey.jsx             # Yolculuk: hat haritası + yıl yıl liste
-│   ├── Spotlight.jsx           # Human+ bandı: iş fotoğrafları galerisi + özet + denklem
+│   ├── Journey.jsx             # Yolculuk: dikey zaman çizgisi (yıl → olaylar)
+│   ├── Spotlight.jsx           # Human+ bandı: kaydırma hikâyesi + özet + denklem
+│   ├── SpotlightStory.jsx      # Sabitlenen ekran, kaydırdıkça sırayla gelen fotoğraf + açıklama (client)
+│   ├── Expertise.jsx / TopicIndex.jsx  # Odaklandığım Konular: yapışkan açıklama paneli + kalınlaşan liste (client)
 │   ├── Platforms.jsx           # Ekosistem şeması + platform kartları
 │   ├── EcosystemDiagram.jsx    # Veriden çizilen SVG döngü şeması
 │   ├── Offers.jsx Manifesto.jsx  # Davet seçenekleri, ilkeler
 │   ├── Affiliations.jsx        # Kurum/yayın listesi (about.affiliations'tan okur)
 │   ├── ArrowIcon.jsx           # Buton ve linklerdeki ok ikonu
+│   ├── Icon.jsx                # Tek ikon ailesi (mic, board, compass); Davet Seçenekleri'nde
+│   ├── Footer.jsx              # Tek cümle + e-posta + menü/platform/sosyal sütunları (server, async)
 │   └── admin/                  # AdminSidebar, EditorShell, SeedBanner
 ├── content/
 │   ├── data.js                 # Tüm statik içerik (bölüm başına export)
@@ -91,6 +95,10 @@ isil_hoca_web_sitesi/
 - Hero'daki rakamlar `hero.stats`'tan, kurum listesi `about.affiliations`'tan, menü butonu `site.navCta`'dan okunur. Kurum logosu (`image`) boşsa kurum adı yazı olarak gösterilir. `hero.eyebrow` alan adı geriye uyumluluk için korunur ama artık isim altındaki ünvan satırıdır.
 - `hero.taglineHighlight` sloganın "büyüyen" kısmıdır: `Hero.jsx` onu harflere böler ve ağırlığı 300'den 800'e çıkarır. Öncesi ince, sonrası kalın yazılır; metinde birebir geçmeli.
 - Bölüm başlıklarının üstüne etiket (eyebrow) koyma; başlık tek başına durur.
+- `hero.lead` hero'daki somut tanıtım cümlesidir (ne, kime). `hero.quote` artık okunmuyor; alıntı `spotlight.caption`'da.
+- İletişim formuna giden butonlar (`site.navCta`, `hero.cta[]`, `offers.items[]`) `topic` ile formdaki Konu'yu doldurur; değer `contact.subjects`'tekilerden biriyle birebir aynı olmalı.
+- CTA etiketi tıklayınca ne olacağını söyler; süre, ücret, dönüş süresi gibi doğrulanmamış koşul yazma.
+- İkon yalnızca `components/Icon.jsx` ailesinden; yeni ikon gerekiyorsa aynı ızgara ve çizgiyle oraya ekle.
 
 ---
 
